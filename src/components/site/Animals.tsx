@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -130,11 +131,15 @@ export function Animals({
                           PKR {Number(animal.price).toLocaleString("en-PK")}
                         </p>
                       )}
-                      <Button
-                        asChild
-                        variant={animal.availability === "Available" ? "default" : "outline"}
-                        className="mt-4 w-full"
-                      >
+                      <div className="mt-4 grid gap-2">
+                        <Button asChild variant="outline" className="w-full">
+                          <Link to="/animals/$animalId" params={{ animalId: animal.id }}>View details</Link>
+                        </Button>
+                        <Button
+                          asChild
+                          variant={animal.availability === "Available" ? "default" : "outline"}
+                          className="w-full"
+                        >
                         <a
                           href={whatsappHref(
                             settings.whatsapp,
@@ -146,7 +151,8 @@ export function Animals({
                           <MessageCircle />
                           {animal.availability === "Available" ? "Inquire" : "Ask About Similar"}
                         </a>
-                      </Button>
+                        </Button>
+                      </div>
                     </div>
                   </article>
                 );

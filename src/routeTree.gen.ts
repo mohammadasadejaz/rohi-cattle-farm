@@ -13,6 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminGateRouteRouteImport } from './routes/admin/_gate/route'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as AnimalsIndexRouteImport } from './routes/animals/index'
+import { Route as AnimalsAnimalIdRouteImport } from './routes/animals/$animalId'
 import { Route as AdminGateAnimalCardsRouteImport } from './routes/admin/_gate/animal-cards'
 import { Route as AdminGateAnimalsRouteImport } from './routes/admin/_gate/animals'
 import { Route as AdminGateBookingsRouteImport } from './routes/admin/_gate/bookings'
@@ -43,6 +45,16 @@ const AdminGateRouteRoute = AdminGateRouteRouteImport.update({
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/admin/login',
   path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnimalsIndexRoute = AnimalsIndexRouteImport.update({
+  id: '/animals/',
+  path: '/animals/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnimalsAnimalIdRoute = AnimalsAnimalIdRouteImport.update({
+  id: '/animals/$animalId',
+  path: '/animals/$animalId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminGateAnimalCardsRoute = AdminGateAnimalCardsRouteImport.update({
@@ -105,7 +117,9 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminGateRouteRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
+  '/animals/$animalId': typeof AnimalsAnimalIdRoute
   '/admin/': typeof AdminIndexRoute
+  '/animals/': typeof AnimalsIndexRoute
   '/admin/animal-cards': typeof AdminGateAnimalCardsRoute
   '/admin/animals': typeof AdminGateAnimalsRoute
   '/admin/bookings': typeof AdminGateBookingsRoute
@@ -122,6 +136,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminIndexRoute
   '/admin/login': typeof AdminLoginRoute
+  '/animals/$animalId': typeof AnimalsAnimalIdRoute
+  '/animals': typeof AnimalsIndexRoute
   '/admin/animal-cards': typeof AdminGateAnimalCardsRoute
   '/admin/animals': typeof AdminGateAnimalsRoute
   '/admin/bookings': typeof AdminGateBookingsRoute
@@ -139,7 +155,9 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin/_gate': typeof AdminGateRouteRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
+  '/animals/$animalId': typeof AnimalsAnimalIdRoute
   '/admin/': typeof AdminIndexRoute
+  '/animals/': typeof AnimalsIndexRoute
   '/admin/_gate/animal-cards': typeof AdminGateAnimalCardsRoute
   '/admin/_gate/animals': typeof AdminGateAnimalsRoute
   '/admin/_gate/bookings': typeof AdminGateBookingsRoute
@@ -158,7 +176,9 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/admin/login'
+    | '/animals/$animalId'
     | '/admin/'
+    | '/animals/'
     | '/admin/animal-cards'
     | '/admin/animals'
     | '/admin/bookings'
@@ -175,6 +195,8 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/admin/login'
+    | '/animals/$animalId'
+    | '/animals'
     | '/admin/animal-cards'
     | '/admin/animals'
     | '/admin/bookings'
@@ -191,7 +213,9 @@ export interface FileRouteTypes {
     | '/'
     | '/admin/_gate'
     | '/admin/login'
+    | '/animals/$animalId'
     | '/admin/'
+    | '/animals/'
     | '/admin/_gate/animal-cards'
     | '/admin/_gate/animals'
     | '/admin/_gate/bookings'
@@ -209,7 +233,9 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminGateRouteRoute: typeof AdminGateRouteRouteWithChildren
   AdminLoginRoute: typeof AdminLoginRoute
+  AnimalsAnimalIdRoute: typeof AnimalsAnimalIdRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  AnimalsIndexRoute: typeof AnimalsIndexRoute
   ApiPublicMediaSplatRoute: typeof ApiPublicMediaSplatRoute
 }
 
@@ -241,6 +267,20 @@ declare module '@tanstack/react-router' {
       path: '/admin/login'
       fullPath: '/admin/login'
       preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/animals/': {
+      id: '/animals/'
+      path: '/animals'
+      fullPath: '/animals/'
+      preLoaderRoute: typeof AnimalsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/animals/$animalId': {
+      id: '/animals/$animalId'
+      path: '/animals/$animalId'
+      fullPath: '/animals/$animalId'
+      preLoaderRoute: typeof AnimalsAnimalIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/_gate/animal-cards': {
@@ -357,7 +397,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminGateRouteRoute: AdminGateRouteRouteWithChildren,
   AdminLoginRoute: AdminLoginRoute,
+  AnimalsAnimalIdRoute: AnimalsAnimalIdRoute,
   AdminIndexRoute: AdminIndexRoute,
+  AnimalsIndexRoute: AnimalsIndexRoute,
   ApiPublicMediaSplatRoute: ApiPublicMediaSplatRoute,
 }
 export const routeTree = rootRouteImport
