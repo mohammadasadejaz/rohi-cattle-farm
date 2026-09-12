@@ -75,7 +75,9 @@ function Index() {
   if (error || !data) {
     return (
       <div className="grid min-h-screen place-items-center p-6 text-center">
-        <p className="text-muted-foreground">The website content could not be loaded. Please refresh the page.</p>
+        <p className="max-w-lg text-muted-foreground">
+          {error instanceof Error ? error.message : "The website content could not be loaded. Please refresh the page."}
+        </p>
       </div>
     );
   }
