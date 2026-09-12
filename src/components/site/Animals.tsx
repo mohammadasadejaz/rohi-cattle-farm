@@ -38,6 +38,9 @@ export function Animals({
           <p className="eyebrow">{settings.animals_eyebrow}</p>
           <h2 className="mt-3 font-display text-3xl md:text-4xl">{settings.animals_title}</h2>
           <p className="mt-4 text-muted-foreground">{settings.animals_description}</p>
+          <Button asChild variant="outline" className="mt-5">
+            <Link to="/animals/">Browse all animals</Link>
+          </Button>
         </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-3">
