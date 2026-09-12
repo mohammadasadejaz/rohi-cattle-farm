@@ -19,7 +19,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
   const logo = mediaUrl(settings.logo_url);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/90 backdrop-blur">
+    <header className="absolute inset-x-0 top-0 z-50 border-b border-white/15 bg-earth/20 text-white backdrop-blur-md">
       <div className="section-shell flex h-16 items-center justify-between gap-4 md:h-20">
         <a href="#home" className="flex items-center gap-3 min-w-0">
           {logo ? (
@@ -33,7 +33,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
             <span className="block truncate font-display text-base leading-tight md:text-lg">
               {settings.farm_name}
             </span>
-            <span className="block text-[11px] tracking-[0.2em] text-muted-foreground uppercase">
+            <span className="block text-[11px] uppercase tracking-[0.2em] text-white/65">
               Est. {settings.established_year}
             </span>
           </span>
@@ -44,7 +44,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
+              className="text-sm font-medium text-white/80 transition-colors hover:text-white"
             >
               {item.label}
             </a>
@@ -52,7 +52,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button asChild size="sm" variant="outline" className="hidden sm:inline-flex">
+          <Button asChild size="sm" variant="outline" className="hidden border-white/30 bg-transparent text-white hover:bg-white/10 sm:inline-flex">
             <a href={telHref(settings.phone)}>
               <Phone /> Call Now
             </a>
@@ -65,7 +65,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
 
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="lg:hidden" aria-label="Open menu">
+              <Button variant="outline" size="icon" className="border-white/30 bg-transparent text-white lg:hidden" aria-label="Open menu">
                 <Menu />
               </Button>
             </SheetTrigger>
