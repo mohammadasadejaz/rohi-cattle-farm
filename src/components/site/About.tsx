@@ -12,9 +12,15 @@ export function About({ settings }: { settings: SiteSettings }) {
   const image = mediaUrl(settings.about_image_url) ?? aboutFallback;
 
   return (
-    <section id="about" className="section-shell scroll-mt-20 py-24 md:py-32">
-      <div className="grid items-center gap-12 lg:grid-cols-2">
-        <div className="relative lg:pr-8">
+    <section id="about" className="scroll-mt-20 bg-secondary/45 py-24 md:py-32">
+      <div className="section-shell grid items-start gap-12 lg:grid-cols-[0.65fr_1.35fr]">
+        <div className="sticky top-28">
+          <p className="eyebrow">01 / The place</p>
+          <h2 className="mt-5 max-w-sm font-display text-5xl leading-[0.86] md:text-7xl">Raised in the rhythm of the Rohi.</h2>
+          <p className="mt-6 max-w-xs text-sm leading-7 text-muted-foreground">A farm shaped by open land, long horizons, and a commitment to animals chosen for their character.</p>
+        </div>
+        <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-end">
+        <div className="relative">
           <img
             src={image}
             alt="Cholistan landscape around the farm"
@@ -29,9 +35,9 @@ export function About({ settings }: { settings: SiteSettings }) {
           </div>
         </div>
 
-        <div>
-          <p className="eyebrow">A place with a point of view</p>
-          <h2 className="mt-3 max-w-lg font-display text-4xl leading-[0.95] md:text-6xl">{settings.about_title}</h2>
+        <div className="md:pb-2">
+          <p className="eyebrow">Our approach</p>
+          <h3 className="mt-3 max-w-lg font-display text-3xl leading-tight md:text-4xl">{settings.about_title}</h3>
           <p className="mt-5 text-base leading-relaxed text-muted-foreground">
             {settings.about_description}
           </p>
@@ -45,6 +51,7 @@ export function About({ settings }: { settings: SiteSettings }) {
               </div>
             ))}
           </div>
+        </div>
         </div>
       </div>
     </section>

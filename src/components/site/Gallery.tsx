@@ -51,12 +51,12 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
           : items.filter((item) => item.category === filter);
 
   return (
-    <section id="gallery" className="scroll-mt-20 bg-secondary/40 py-20 md:py-28">
+    <section id="gallery" className="scroll-mt-20 bg-secondary/40 py-24 md:py-32">
       <div className="section-shell">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
-            <p className="eyebrow">Gallery</p>
-            <h2 className="mt-3 font-display text-3xl md:text-4xl">From the Farm</h2>
+            <p className="eyebrow">04 / The atmosphere</p>
+            <h2 className="mt-3 font-display text-5xl leading-[0.86] md:text-7xl">A life lived outdoors.</h2>
             {images.length === 0 && (
               <p className="mt-3 text-sm text-muted-foreground">
                 Sample imagery shown — real farm photographs will replace these once uploaded.
@@ -77,12 +77,12 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-12">
           {visible.map((item, index) =>
             item.isVideo ? (
               <figure
                 key={`${item.src}-${index}`}
-                className="overflow-hidden border border-border bg-card/80 shadow-[var(--shadow-soft)] backdrop-blur-sm"
+                className="overflow-hidden border border-border bg-card/80 shadow-[var(--shadow-soft)] backdrop-blur-sm lg:col-span-4"
               >
                 <video
                   src={item.src}
@@ -98,7 +98,7 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
                 key={`${item.src}-${index}`}
                 type="button"
                 onClick={() => setActive(item)}
-                className="group overflow-hidden border border-border bg-card/80 text-left shadow-[var(--shadow-soft)] backdrop-blur-sm"
+                className={`group overflow-hidden border border-border bg-card/80 text-left shadow-[var(--shadow-soft)] backdrop-blur-sm lg:col-span-${index % 3 === 0 ? "6" : "3"}`}
               >
                 <img
                   src={item.src}

@@ -11,28 +11,29 @@ export function Services({
   services: Service[];
 }) {
   return (
-    <section id="services" className="section-shell scroll-mt-20 py-20 md:py-28">
-      <div className="max-w-2xl">
-        <p className="eyebrow">What We Offer</p>
-        <h2 className="mt-3 font-display text-3xl md:text-4xl">Farm Services</h2>
+    <section id="services" className="section-shell scroll-mt-20 py-24 md:py-32">
+      <div className="grid gap-8 lg:grid-cols-[0.6fr_1.4fr]">
+        <div>
+          <p className="eyebrow">03 / The service</p>
+          <h2 className="mt-4 max-w-sm font-display text-5xl leading-[0.86] md:text-7xl">Everything needed for a confident choice.</h2>
+        </div>
+        <p className="max-w-xl self-end text-sm leading-7 text-muted-foreground">From selection to delivery, our team keeps the process direct, considered, and personal.</p>
       </div>
 
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {services.map((service) => {
+      <div className="mt-14 divide-y divide-border border-y border-border">
+        {services.map((service, index) => {
           const image = mediaUrl(service.image_url);
           return (
             <article
               key={service.id}
-              className="flex flex-col overflow-hidden border border-border/80 bg-card/75 shadow-[var(--shadow-soft)] backdrop-blur-sm"
+              className="grid gap-5 py-7 md:grid-cols-[5rem_1fr_1.2fr_auto] md:items-center"
             >
-              {image && (
-                <img src={image} alt={service.title} loading="lazy" className="h-40 w-full object-cover" />
-              )}
-              <div className="flex flex-1 flex-col p-6">
-                <h3 className="font-display text-xl">{service.title}</h3>
-                <p className="mt-3 flex-1 text-sm text-muted-foreground">{service.description}</p>
+              <span className="font-display text-3xl text-primary/50">0{index + 1}</span>
+              <h3 className="font-display text-2xl">{service.title}</h3>
+              <p className="text-sm leading-6 text-muted-foreground">{service.description}</p>
+              <div>
                 {service.cta_label && (
-                  <Button asChild variant="outline" className="mt-5">
+                  <Button asChild variant="outline">
                     <a
                       href={whatsappHref(
                         settings.whatsapp,
