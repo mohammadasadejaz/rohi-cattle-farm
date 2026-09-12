@@ -49,10 +49,10 @@ export function Hero({ settings }: { settings: SiteSettings }) {
             </Button>
           </div>
         </div>
-        <div className="mt-14 grid max-w-2xl grid-cols-3 border-t border-white/25 pt-5 text-white/80">
-          <div><p className="font-display text-2xl text-white">Rohi</p><p className="text-[10px] uppercase tracking-[0.18em]">Cholistan origin</p></div>
-          <div><p className="font-display text-2xl text-white">Qurbani</p><p className="text-[10px] uppercase tracking-[0.18em]">Meat & breeding</p></div>
-          <div><p className="font-display text-2xl text-white">Care</p><p className="text-[10px] uppercase tracking-[0.18em]">Raised responsibly</p></div>
+        <div className="glass-panel mt-12 grid max-w-3xl gap-5 p-5 text-white/80 sm:grid-cols-3 sm:p-6">
+          <div><p className="font-display text-3xl text-white">Rohi</p><p className="text-[10px] uppercase tracking-[0.18em]">Cholistan origin</p></div>
+          <div><p className="font-display text-3xl text-white">Qurbani</p><p className="text-[10px] uppercase tracking-[0.18em]">Meat & breeding</p></div>
+          <div><p className="font-display text-3xl text-white">Care</p><p className="text-[10px] uppercase tracking-[0.18em]">Raised responsibly</p></div>
         </div>
       </div>
     </section>

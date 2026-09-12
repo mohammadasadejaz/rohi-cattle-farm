@@ -116,6 +116,17 @@ function Index() {
       <SiteHeader settings={settings} />
       <main>
         <Hero settings={settings} />
+        <section className="relative z-10 -mt-8 px-6 md:-mt-12">
+          <div className="mx-auto grid max-w-6xl gap-6 border border-border/80 bg-card/90 p-6 shadow-[var(--shadow-lift)] backdrop-blur-xl md:grid-cols-[0.8fr_1.7fr_0.8fr] md:items-center md:p-10">
+            <p className="eyebrow">The farm, reimagined</p>
+            <p className="font-display text-2xl leading-tight md:text-4xl">
+              Livestock with a sense of place, selected with patience and raised with purpose.
+            </p>
+            <a href="#animals" className="text-sm font-semibold uppercase tracking-[0.16em] text-primary hover:underline">
+              Explore the collection ↗
+            </a>
+          </div>
+        </section>
         <About settings={settings} />
         <Animals
           settings={settings}

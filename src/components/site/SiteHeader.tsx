@@ -19,7 +19,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
   const logo = mediaUrl(settings.logo_url);
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50 border-b border-white/15 bg-earth/20 text-white backdrop-blur-md">
+    <header className="absolute inset-x-0 top-0 z-50 border-b border-white/15 bg-earth/30 text-white backdrop-blur-md">
       <div className="section-shell flex h-16 items-center justify-between gap-4 md:h-20">
         <a href="#home" className="flex items-center gap-3 min-w-0">
           {logo ? (

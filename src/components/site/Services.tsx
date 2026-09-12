@@ -23,7 +23,7 @@ export function Services({
           return (
             <article
               key={service.id}
-              className="flex flex-col overflow-hidden rounded-lg border border-border bg-card shadow-[var(--shadow-soft)]"
+              className="flex flex-col overflow-hidden border border-border/80 bg-card/75 shadow-[var(--shadow-soft)] backdrop-blur-sm"
             >
               {image && (
                 <img src={image} alt={service.title} loading="lazy" className="h-40 w-full object-cover" />

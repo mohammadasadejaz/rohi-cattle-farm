@@ -82,7 +82,7 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
             item.isVideo ? (
               <figure
                 key={`${item.src}-${index}`}
-                className="overflow-hidden rounded-lg border border-border bg-card"
+                className="overflow-hidden border border-border bg-card/80 shadow-[var(--shadow-soft)] backdrop-blur-sm"
               >
                 <video
                   src={item.src}
@@ -98,7 +98,7 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
                 key={`${item.src}-${index}`}
                 type="button"
                 onClick={() => setActive(item)}
-                className="group overflow-hidden rounded-lg border border-border bg-card text-left"
+                className="group overflow-hidden border border-border bg-card/80 text-left shadow-[var(--shadow-soft)] backdrop-blur-sm"
               >
                 <img
                   src={item.src}
