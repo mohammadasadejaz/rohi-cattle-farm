@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { Phone, MessageCircle } from "lucide-react";
 
-import { siteDataQueryOptions } from "@/lib/queries";
+import { getPublicSiteData } from "@/lib/public-data-browser";
 import { telHref, whatsappHref, type SiteSettings } from "@/lib/site";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { Hero } from "@/components/site/Hero";
@@ -16,7 +16,6 @@ import { ContactLocation } from "@/components/site/ContactLocation";
 import { SiteFooter } from "@/components/site/SiteFooter";
 
 export const Route = createFileRoute("/")({
-  loader: ({ context }) => context.queryClient.ensureQueryData(siteDataQueryOptions),
   head: () => ({
     meta: [
       {
@@ -63,7 +62,24 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const { data } = useSuspenseQuery(siteDataQueryOptions);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["site-data"],
+    queryFn: getPublicSiteData,
+    staleTime: 30_000,
+  });
+
+  if (isLoading) {
+    return <div className="grid min-h-screen place-items-center text-muted-foreground">Loading...</div>;
+  }
+
+  if (error || !data) {
+    return (
+      <div className="grid min-h-screen place-items-center p-6 text-center">
+        <p className="text-muted-foreground">The website content could not be loaded. Please refresh the page.</p>
+      </div>
+    );
+  }
+
   const settings = data.settings as SiteSettings | null;
 
   if (!settings) {
