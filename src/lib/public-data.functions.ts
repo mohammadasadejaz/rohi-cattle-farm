@@ -3,8 +3,13 @@ import { createServerFn } from "@tanstack/react-start";
 /** Public, read-only website content used by the marketing site (SSR friendly). */
 export const getSiteData = createServerFn({ method: "GET" }).handler(async () => {
   const { createClient } = await import("@supabase/supabase-js");
-  const url = process.env["SUPABASE_URL"]!;
-  const key = process.env["SUPABASE_PUBLISHABLE_KEY"]!;
+  const url = import.meta.env.VITE_SUPABASE_URL || process.env["SUPABASE_URL"];
+  const key =
+    import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || process.env["SUPABASE_PUBLISHABLE_KEY"];
+
+  if (!url || !key) {
+    throw new Error("Missing Supabase environment variables for public site data");
+  }
 
   const client = createClient(url, key, {
     auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
