@@ -32,18 +32,18 @@ export function Animals({
   cards: AnimalCard[];
 }) {
   return (
-    <section id="animals" className="scroll-mt-20 bg-earth py-24 text-primary-foreground md:py-32">
+    <section id="animals" className="scroll-mt-20 bg-secondary/40 py-24 md:py-32">
       <div className="section-shell">
         <div className="max-w-2xl">
-          <p className="eyebrow">02 / The collection</p>
+          <p className="eyebrow">Selected from the Rohi</p>
           <h2 className="mt-3 font-display text-4xl leading-[0.95] md:text-6xl">{settings.animals_title}</h2>
-          <p className="mt-4 max-w-xl text-primary-foreground/65">{settings.animals_description}</p>
-          <Button asChild variant="outline" className="mt-5 border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10">
+          <p className="mt-4 text-muted-foreground">{settings.animals_description}</p>
+          <Button asChild variant="outline" className="mt-5">
             <Link to="/animals/">Browse all animals</Link>
           </Button>
         </div>
 
-          <div className="mt-14 grid gap-px border border-primary-foreground/15 bg-primary-foreground/15 md:grid-cols-3">
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
           {cards.map((card) => {
             const categoryBreeds = breeds.filter((breed) => breed.category === card.category);
             const image =
@@ -51,7 +51,7 @@ export function Animals({
             return (
               <article
                 key={card.id}
-                className="group overflow-hidden bg-earth transition-colors hover:bg-primary/80"
+                className="group overflow-hidden border border-border bg-card shadow-[var(--shadow-soft)] transition-shadow hover:shadow-[var(--shadow-lift)]"
               >
                 <img
                   src={image}
@@ -59,19 +59,19 @@ export function Animals({
                   loading="lazy"
                   width={1024}
                   height={768}
-                  className="h-64 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="h-60 w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="p-6">
-                  <h3 className="font-display text-3xl text-primary-foreground">{card.title}</h3>
+                  <h3 className="font-display text-2xl">{card.title}</h3>
                   <ul className="mt-3 flex flex-wrap gap-2">
                     {categoryBreeds.map((breed) => (
                       <li key={breed.id}>
-                        <Badge variant="secondary" className="bg-primary-foreground/10 text-primary-foreground">{breed.name}</Badge>
+                        <Badge variant="secondary">{breed.name}</Badge>
                       </li>
                     ))}
                   </ul>
                   {card.description && (
-                    <p className="mt-4 text-sm text-primary-foreground/65">{card.description}</p>
+                    <p className="mt-4 text-sm text-muted-foreground">{card.description}</p>
                   )}
                   <Button asChild className="mt-5 w-full">
                     <a
