@@ -7,9 +7,22 @@ import { AnimalPhoto } from "@/components/site/AnimalPhoto";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { getPublicSiteData } from "@/lib/public-data-browser";
-import { availabilityVariant, isSold, mediaUrl, withSoldLast } from "@/lib/site";
+import { SITE_URL, availabilityVariant, isSold, mediaUrl, withSoldLast } from "@/lib/site";
 
 export const Route = createFileRoute("/animals/")({
+  head: () => ({
+    meta: [
+      { title: "Animals for Sale | Iqbal Cattle Farm (Rohi), Bahawalpur" },
+      {
+        name: "description",
+        content:
+          "Browse Cholistani bulls, cattle, sheep and goats available at Iqbal Cattle Farm (Rohi), Yazman, Bahawalpur — for Qurbani, meat and breeding.",
+      },
+      { property: "og:title", content: "Animals for Sale | Iqbal Cattle Farm (Rohi)" },
+      { property: "og:url", content: `${SITE_URL}/animals` },
+    ],
+    links: [{ rel: "canonical", href: `${SITE_URL}/animals` }],
+  }),
   component: AnimalsPage,
 });
 

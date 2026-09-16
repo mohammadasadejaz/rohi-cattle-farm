@@ -43,6 +43,9 @@ export const GALLERY_CATEGORIES = [
   "Other",
 ] as const;
 
+/** Canonical origin of the live site, used for canonical/og:url tags. */
+export const SITE_URL = "https://www.iqbalcattlefarm.com";
+
 export function isSold(availability: string): boolean {
   return availability === "Sold";
 }

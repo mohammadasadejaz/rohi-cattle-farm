@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Phone, MessageCircle } from "lucide-react";
 
 import { getPublicSiteData } from "@/lib/public-data-browser";
-import { telHref, whatsappHref, type SiteSettings } from "@/lib/site";
+import { SITE_URL, telHref, whatsappHref, type SiteSettings } from "@/lib/site";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { Hero } from "@/components/site/Hero";
 import { About } from "@/components/site/About";
@@ -49,7 +49,9 @@ export const Route = createFileRoute("/")({
         content:
           "Premium Cholistani cattle, sheep and goats for Qurbani, meat and breeding in Bahawalpur.",
       },
+      { property: "og:url", content: `${SITE_URL}/` },
     ],
+    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
   }),
   component: Index,
   errorComponent: () => (
