@@ -3,10 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 
+import { AnimalPhoto } from "@/components/site/AnimalPhoto";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { getPublicSiteData } from "@/lib/public-data-browser";
-import { mediaUrl } from "@/lib/site";
+import { availabilityVariant, isSold, mediaUrl, withSoldLast } from "@/lib/site";
 
 export const Route = createFileRoute("/animals/")({
   component: AnimalsPage,
@@ -26,7 +27,7 @@ function AnimalsPage() {
   const categories = ["All", ...Array.from(new Set(animals.map((animal) => animal.category)))];
   const filtered = useMemo(() => {
     const term = search.trim().toLowerCase();
-    return animals.filter((animal) => {
+    const matches = animals.filter((animal) => {
       const searchable = [animal.title, animal.category, animal.breed, animal.gender, animal.purpose]
         .filter(Boolean)
         .join(" ")
@@ -37,6 +38,7 @@ function AnimalsPage() {
         (availability === "All" || animal.availability === availability)
       );
     });
+    return withSoldLast(matches);
   }, [animals, availability, category, search]);
 
   if (isLoading) return <div className="grid min-h-screen place-items-center">Loading animals...</div>;
@@ -70,11 +72,12 @@ function AnimalsPage() {
         <div className="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((animal) => {
             const image = mediaUrl(animal.photos?.[0]);
+            const sold = isSold(animal.availability);
             return (
               <Link key={animal.id} to="/animals/$animalId" params={{ animalId: animal.id }} className="group overflow-hidden rounded-lg border border-border bg-card shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-lift)]">
-                {image ? <img src={image} alt={animal.title} className="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-105" /> : <div className="grid h-52 place-items-center bg-muted text-sm text-muted-foreground">Photo coming soon</div>}
+                <AnimalPhoto src={image} alt={animal.title} sold={sold} className="h-52 w-full" imgClassName="transition-transform duration-500 group-hover:scale-105" />
                 <div className="p-5">
-                  <div className="flex items-start justify-between gap-3"><h2 className="font-display text-xl">{animal.title}</h2><Badge>{animal.availability}</Badge></div>
+                  <div className="flex items-start justify-between gap-3"><h2 className="font-display text-xl">{animal.title}</h2><Badge variant={availabilityVariant(animal.availability)}>{animal.availability}</Badge></div>
                   <p className="mt-2 text-sm text-muted-foreground">{[animal.category, animal.breed, animal.purpose].filter(Boolean).join(" · ")}</p>
                   {animal.price != null && <p className="mt-4 font-display text-lg">PKR {Number(animal.price).toLocaleString("en-PK")}</p>}
                 </div>

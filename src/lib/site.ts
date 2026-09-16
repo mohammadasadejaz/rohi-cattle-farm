@@ -43,6 +43,24 @@ export const GALLERY_CATEGORIES = [
   "Other",
 ] as const;
 
+export function isSold(availability: string): boolean {
+  return availability === "Sold";
+}
+
+/** Badge colour for a listing state: red for Sold, muted for Reserved, primary for Available. */
+export function availabilityVariant(availability: string) {
+  if (isSold(availability)) return "destructive" as const;
+  if (availability === "Reserved") return "secondary" as const;
+  return "default" as const;
+}
+
+/** Sold animals stay on the site but sink below anything a buyer can still act on. */
+export function withSoldLast<T extends { availability: string }>(animals: T[]): T[] {
+  return [...animals].sort(
+    (a, b) => Number(isSold(a.availability)) - Number(isSold(b.availability)),
+  );
+}
+
 /** Resolve a stored media reference (storage object path or absolute URL) to a usable src. */
 export function mediaUrl(value?: string | null): string | null {
   if (!value) return null;

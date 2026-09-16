@@ -5,7 +5,15 @@ import { Badge } from "@/components/ui/badge";
 import bullsImg from "@/assets/bulls.jpg";
 import sheepImg from "@/assets/sheep.jpg";
 import goatsImg from "@/assets/goats.jpg";
-import { mediaUrl, whatsappHref, type SiteSettings } from "@/lib/site";
+import { AnimalPhoto } from "@/components/site/AnimalPhoto";
+import {
+  availabilityVariant,
+  isSold,
+  mediaUrl,
+  whatsappHref,
+  withSoldLast,
+  type SiteSettings,
+} from "@/lib/site";
 import type { Animal, AnimalCard, Breed } from "@/lib/queries";
 
 const DEFAULT_CARD_IMAGES: Record<string, string> = {
@@ -13,12 +21,6 @@ const DEFAULT_CARD_IMAGES: Record<string, string> = {
   Sheep: sheepImg,
   Goats: goatsImg,
 };
-
-function availabilityVariant(availability: string) {
-  if (availability === "Available") return "default" as const;
-  if (availability === "Reserved") return "secondary" as const;
-  return "outline" as const;
-}
 
 export function Animals({
   settings,
@@ -31,6 +33,10 @@ export function Animals({
   animals: Animal[];
   cards: AnimalCard[];
 }) {
+  const soldCount = animals.filter((animal) => isSold(animal.availability)).length;
+  const availableCount = animals.filter((animal) => animal.availability === "Available").length;
+  const listings = withSoldLast(animals);
+
   return (
     <section id="animals" className="scroll-mt-20 bg-secondary/40 py-24 md:py-32">
       <div className="section-shell">
@@ -41,6 +47,18 @@ export function Animals({
           <Button asChild variant="outline" className="mt-5">
             <Link to="/animals/">Browse all animals</Link>
           </Button>
+          {soldCount > 0 && (
+            <dl className="mt-8 flex flex-wrap gap-x-12 gap-y-5">
+              <div>
+                <dt className="eyebrow">Animals sold</dt>
+                <dd className="mt-1 font-display text-4xl">{soldCount}</dd>
+              </div>
+              <div>
+                <dt className="eyebrow">Available now</dt>
+                <dd className="mt-1 font-display text-4xl">{availableCount}</dd>
+              </div>
+            </dl>
+          )}
         </div>
 
           <div className="mt-12 grid gap-5 md:grid-cols-3">
@@ -95,25 +113,22 @@ export function Animals({
           <div className="mt-16">
             <h3 className="font-display text-2xl">Current Listings</h3>
             <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {animals.map((animal) => {
+              {listings.map((animal) => {
                 const photo = mediaUrl(animal.photos?.[0]);
+                const sold = isSold(animal.availability);
                 return (
                   <article
                     key={animal.id}
                     className="overflow-hidden rounded-lg border border-border bg-card shadow-[var(--shadow-soft)]"
                   >
-                    {photo ? (
-                      <img
-                        src={photo}
-                        alt={animal.title}
-                        loading="lazy"
-                        className="h-48 w-full object-cover"
-                      />
-                    ) : (
-                      <div className="grid h-48 w-full place-items-center bg-muted text-sm text-muted-foreground">
-                        Photo coming soon
-                      </div>
-                    )}
+                    <AnimalPhoto
+                      src={photo}
+                      alt={animal.title}
+                      sold={sold}
+                      loading="lazy"
+                      className="h-48 w-full"
+                      stampClassName="text-xl px-5"
+                    />
                     <div className="p-5">
                       <div className="flex items-start justify-between gap-3">
                         <h4 className="font-display text-xl">{animal.title}</h4>
@@ -146,7 +161,9 @@ export function Animals({
                         <a
                           href={whatsappHref(
                             settings.whatsapp,
-                            `Assalam-o-Alaikum, I would like to inquire about "${animal.title}" at ${settings.farm_name}.`,
+                            sold
+                              ? `Assalam-o-Alaikum, I saw "${animal.title}" is sold at ${settings.farm_name}. Do you have similar animals available?`
+                              : `Assalam-o-Alaikum, I would like to inquire about "${animal.title}" at ${settings.farm_name}.`,
                           )}
                           target="_blank"
                           rel="noreferrer"

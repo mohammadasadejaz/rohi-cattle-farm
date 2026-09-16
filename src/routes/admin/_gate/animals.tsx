@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Pencil, Plus, Trash2 } from "lucide-react";
+import { BadgeCheck, Pencil, Plus, RotateCcw, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,6 +29,8 @@ import {
   AVAILABILITIES,
   GENDERS,
   PURPOSES,
+  availabilityVariant,
+  isSold,
   mediaUrl,
 } from "@/lib/site";
 
@@ -83,6 +85,13 @@ function AnimalsAdmin() {
     setDraft((current) => (current ? { ...current, ...patch } : current));
   }
 
+  function toggleSold(animal: Animal) {
+    save.mutate({
+      id: animal.id,
+      values: { availability: isSold(animal.availability) ? "Available" : "Sold" },
+    });
+  }
+
   function handleSave() {
     if (!draft) return;
     if (!draft.title.trim()) return;
@@ -126,7 +135,7 @@ function AnimalsAdmin() {
             <div className="space-y-2 p-4">
               <div className="flex items-start justify-between gap-2">
                 <h2 className="font-display text-lg leading-tight">{animal.title}</h2>
-                <Badge variant="secondary">{animal.availability}</Badge>
+                <Badge variant={availabilityVariant(animal.availability)}>{animal.availability}</Badge>
               </div>
               <p className="text-xs text-muted-foreground">
                 {animal.category} · {animal.gender} · {animal.purpose}
@@ -137,7 +146,16 @@ function AnimalsAdmin() {
               ) : (
                 <p className="text-sm text-muted-foreground">Price on request</p>
               )}
-              <div className="flex gap-2 pt-2">
+              <div className="flex flex-wrap gap-2 pt-2">
+                <Button
+                  size="sm"
+                  variant={isSold(animal.availability) ? "outline" : "secondary"}
+                  disabled={save.isPending}
+                  onClick={() => toggleSold(animal)}
+                >
+                  {isSold(animal.availability) ? <RotateCcw /> : <BadgeCheck />}
+                  {isSold(animal.availability) ? "Mark available" : "Mark sold"}
+                </Button>
                 <Button
                   size="sm"
                   variant="outline"
