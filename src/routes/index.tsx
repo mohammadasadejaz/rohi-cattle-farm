@@ -10,6 +10,7 @@ import { About } from "@/components/site/About";
 import { Animals } from "@/components/site/Animals";
 import { AvailabilityNotice } from "@/components/site/AvailabilityNotice";
 import { Services } from "@/components/site/Services";
+import { EmbryoTransfer } from "@/components/site/EmbryoTransfer";
 import { Gallery } from "@/components/site/Gallery";
 import { BookingForm } from "@/components/site/BookingForm";
 import { ContactLocation } from "@/components/site/ContactLocation";
@@ -138,6 +139,7 @@ function Index() {
         />
         <AvailabilityNotice />
         <Services settings={settings} services={data.services} />
+        <EmbryoTransfer settings={settings} />
         <Gallery images={data.gallery} />
         <BookingForm settings={settings} breeds={data.breeds} />
         <ContactLocation settings={settings} />
