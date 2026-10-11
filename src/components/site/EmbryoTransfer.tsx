@@ -6,7 +6,7 @@ import { whatsappHref, type SiteSettings } from "@/lib/site";
 
 export function EmbryoTransfer({ settings }: { settings: SiteSettings }) {
   return (
-    <section id="embryo-transfer" className="scroll-mt-20 bg-secondary/40 py-24 md:py-32">
+    <section id="embryo-transfer" className="scroll-mt-20 py-24 md:py-32">
       <div className="section-shell">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>

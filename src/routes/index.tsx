@@ -11,6 +11,7 @@ import { Animals } from "@/components/site/Animals";
 import { AvailabilityNotice } from "@/components/site/AvailabilityNotice";
 import { Services } from "@/components/site/Services";
 import { EmbryoTransfer } from "@/components/site/EmbryoTransfer";
+import { Agriculture } from "@/components/site/Agriculture";
 import { Gallery } from "@/components/site/Gallery";
 import { BookingForm } from "@/components/site/BookingForm";
 import { ContactLocation } from "@/components/site/ContactLocation";
@@ -138,6 +139,7 @@ function Index() {
           cards={data.animalCards}
         />
         <AvailabilityNotice />
+        <Agriculture />
         <Services settings={settings} services={data.services} />
         <EmbryoTransfer settings={settings} />
         <Gallery images={data.gallery} />

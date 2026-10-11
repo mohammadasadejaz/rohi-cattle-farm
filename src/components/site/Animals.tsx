@@ -38,7 +38,7 @@ export function Animals({
   const listings = withSoldLast(animals);
 
   return (
-    <section id="animals" className="scroll-mt-20 bg-secondary/40 py-24 md:py-32">
+    <section id="animals" className="scroll-mt-20 bg-secondary/40 pt-24 pb-12 md:pt-32 md:pb-16">
       <div className="section-shell">
         <div className="max-w-2xl">
           <p className="eyebrow">Selected from the Rohi</p>
