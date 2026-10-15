@@ -1,0 +1,17 @@
+ALTER TABLE public.site_settings
+  ADD COLUMN IF NOT EXISTS agriculture_eyebrow text NOT NULL DEFAULT 'Grown on our own land',
+  ADD COLUMN IF NOT EXISTS agriculture_title text NOT NULL DEFAULT 'The animals eat what we grow',
+  ADD COLUMN IF NOT EXISTS agriculture_description text NOT NULL DEFAULT 'Their feed comes from our own fields in the Cholistan, cut fresh and brought in through the year. Nothing artificial goes into them, and nothing is rushed to put on weight quickly. They are raised slowly, on clean water and open ground, with the same care you would give your own herd.',
+  ADD COLUMN IF NOT EXISTS agriculture_image_url text,
+  ADD COLUMN IF NOT EXISTS agriculture_point1_title text NOT NULL DEFAULT 'Our Own Fields',
+  ADD COLUMN IF NOT EXISTS agriculture_point1_text text NOT NULL DEFAULT 'Fodder is grown on our own land and cut fresh through the year.',
+  ADD COLUMN IF NOT EXISTS agriculture_point2_title text NOT NULL DEFAULT 'Nothing Artificial',
+  ADD COLUMN IF NOT EXISTS agriculture_point2_text text NOT NULL DEFAULT 'No artificial feed and no shortcuts taken to put on weight quickly.',
+  ADD COLUMN IF NOT EXISTS agriculture_point3_title text NOT NULL DEFAULT 'Raised With Care',
+  ADD COLUMN IF NOT EXISTS agriculture_point3_text text NOT NULL DEFAULT 'Open ground, clean water, and patient day-to-day attention.',
+  ADD COLUMN IF NOT EXISTS embryo_eyebrow text NOT NULL DEFAULT 'Advanced breeding',
+  ADD COLUMN IF NOT EXISTS embryo_title text NOT NULL DEFAULT 'Embryo transfer for stronger Cholistani herds',
+  ADD COLUMN IF NOT EXISTS embryo_description text NOT NULL DEFAULT 'Embryo transfer lets one outstanding cow produce far more calves than she could naturally. We collect embryos from proven Cholistani donors and place them in recipient cows, so the genetics worth keeping spread through the herd in a fraction of the time.',
+  ADD COLUMN IF NOT EXISTS embryo_image_url text,
+  ADD COLUMN IF NOT EXISTS embryo_cta_text text NOT NULL DEFAULT 'Ask about embryo transfer',
+  ADD COLUMN IF NOT EXISTS embryo_whatsapp_message text NOT NULL DEFAULT 'Assalam-o-Alaikum, I would like to know more about your embryo transfer services.';

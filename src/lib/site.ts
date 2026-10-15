@@ -25,6 +25,22 @@ export type SiteSettings = {
   favicon_url: string | null;
   facebook_url: string | null;
   instagram_url: string | null;
+  agriculture_eyebrow?: string;
+  agriculture_title?: string;
+  agriculture_description?: string;
+  agriculture_image_url?: string | null;
+  agriculture_point1_title?: string;
+  agriculture_point1_text?: string;
+  agriculture_point2_title?: string;
+  agriculture_point2_text?: string;
+  agriculture_point3_title?: string;
+  agriculture_point3_text?: string;
+  embryo_eyebrow?: string;
+  embryo_title?: string;
+  embryo_description?: string;
+  embryo_image_url?: string | null;
+  embryo_cta_text?: string;
+  embryo_whatsapp_message?: string;
 };
 
 export const ANIMAL_CATEGORIES = ["Bulls / Cattle", "Sheep", "Goats"] as const;

@@ -139,7 +139,7 @@ function Index() {
           cards={data.animalCards}
         />
         <AvailabilityNotice />
-        <Agriculture />
+        <Agriculture settings={settings} />
         <Services settings={settings} services={data.services} />
         <EmbryoTransfer settings={settings} />
         <Gallery images={data.gallery} />
