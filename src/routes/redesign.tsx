@@ -14,8 +14,6 @@ import {
   CheckCircle2,
   Sparkles,
   MapPin,
-  Clock,
-  Compass,
   ArrowUpRight,
   Award,
   Crown,
@@ -76,7 +74,7 @@ function LuxuryRedesignPage() {
 
   if (isLoading) {
     return (
-      <div className="grid min-h-screen place-items-center bg-[#0d100e] text-[#d4af37]">
+      <div className="grid min-h-screen place-items-center bg-[#09090b] text-[#d4af37]">
         <div className="flex flex-col items-center gap-4">
           <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#d4af37] border-t-transparent" />
           <p className="font-serif tracking-widest uppercase text-xs text-white/70">
@@ -89,7 +87,7 @@ function LuxuryRedesignPage() {
 
   if (error || !data || !data.settings) {
     return (
-      <div className="grid min-h-screen place-items-center bg-[#0d100e] p-6 text-center text-white/70">
+      <div className="grid min-h-screen place-items-center bg-[#09090b] p-6 text-center text-white/70">
         <p>Could not connect to the farm registry. Please refresh.</p>
       </div>
     );
@@ -116,15 +114,15 @@ function LuxuryRedesignPage() {
   const embryoImg = mediaUrl(settings.embryo_image_url) ?? embryoFallback;
 
   return (
-    <div className="min-h-screen bg-[#0b0e0c] text-[#f4efe6] selection:bg-[#c5a059] selection:text-black font-sans">
+    <div className="min-h-screen bg-[#09090b] text-[#f4efe6] selection:bg-[#c5a059] selection:text-black font-sans">
       {/* =========================================
           PROTOTYPE BANNER (Discrete Top Pill)
          ========================================= */}
-      <div className="sticky top-0 z-50 flex items-center justify-between border-b border-[#c5a059]/30 bg-[#0b0e0c]/90 px-4 py-2 text-xs text-[#e8d5b5] backdrop-blur-xl">
+      <div className="sticky top-0 z-50 flex items-center justify-between border-b border-[#c5a059]/30 bg-[#09090b]/95 px-4 py-2 text-xs text-[#e8d5b5] backdrop-blur-xl">
         <div className="flex items-center gap-2">
           <Crown className="h-3.5 w-3.5 text-[#d4af37]" />
           <span>
-            <strong>Ultra-Premium Overhaul Prototype:</strong> Bespoke luxury cattle estate design.
+            <strong>Ultra-Premium Overhaul Prototype:</strong> Obsidian & Imperial Gold Edition.
           </span>
         </div>
         <Link to="/" className="text-[#d4af37] underline underline-offset-2 hover:text-white">
@@ -135,11 +133,11 @@ function LuxuryRedesignPage() {
       {/* =========================================
           LUXURY FLOATING NAVBAR
          ========================================= */}
-      <header className="sticky top-[33px] z-40 border-b border-white/10 bg-[#0d120f]/80 backdrop-blur-md">
+      <header className="sticky top-[33px] z-40 border-b border-white/10 bg-[#0e0e12]/85 backdrop-blur-md">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
           {/* Logo / Brandmark */}
           <a href="#home" className="flex items-center gap-3 group">
-            <div className="grid h-10 w-10 place-items-center rounded-full border border-[#c5a059]/60 bg-gradient-to-br from-[#c5a059]/20 to-black text-[#d4af37] shadow-inner transition-transform group-hover:scale-105">
+            <div className="grid h-10 w-10 place-items-center rounded-full border border-[#c5a059]/60 bg-gradient-to-br from-[#c5a059]/25 to-black text-[#d4af37] shadow-inner transition-transform group-hover:scale-105">
               <span className="font-serif text-sm font-bold tracking-wider">ICF</span>
             </div>
             <div>
@@ -174,15 +172,15 @@ function LuxuryRedesignPage() {
             </a>
           </nav>
 
-          {/* Direct Concierge WhatsApp Button */}
+          {/* Direct Concierge WhatsApp Button (Gold / Obsidian) */}
           <div className="flex items-center gap-3">
             <a
               href={whatsappHref(settings.whatsapp, "Assalam-o-Alaikum, I would like to speak with the estate concierge regarding livestock availability.")}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-[#c5a059]/50 bg-[#16221b] px-4 py-2 text-xs font-medium text-[#e5c158] shadow-[0_0_15px_rgba(197,160,89,0.15)] transition-all hover:border-[#c5a059] hover:bg-[#1e3026] hover:text-white"
+              className="inline-flex items-center gap-2 rounded-full border border-[#c5a059]/50 bg-[#1a1712] px-4 py-2 text-xs font-medium text-[#e5c158] shadow-[0_0_15px_rgba(197,160,89,0.15)] transition-all hover:border-[#c5a059] hover:bg-[#c5a059] hover:text-black"
             >
-              <MessageCircle className="h-3.5 w-3.5 text-emerald-400" />
+              <MessageCircle className="h-3.5 w-3.5 text-[#d4af37]" />
               <span>VIP WhatsApp</span>
             </a>
           </div>
@@ -200,12 +198,12 @@ function LuxuryRedesignPage() {
             alt={settings.farm_name}
             className="absolute inset-0 h-full w-full object-cover object-center scale-105 transition-transform duration-1000"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0b0e0c] via-[#0b0e0c]/70 to-[#0b0e0c]/40" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_#0b0e0c_85%)]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/75 to-[#09090b]/40" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_#09090b_85%)]" />
 
           <div className="relative z-10 mx-auto max-w-5xl px-6 py-20 text-center">
             {/* Hallmark Pill */}
-            <div className="inline-flex items-center gap-2.5 rounded-full border border-[#c5a059]/40 bg-[#0d120f]/80 px-4 py-1.5 backdrop-blur-md">
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-[#c5a059]/40 bg-[#121216]/90 px-4 py-1.5 backdrop-blur-md">
               <Sparkles className="h-3.5 w-3.5 text-[#d4af37]" />
               <span className="font-serif text-xs tracking-[0.25em] uppercase text-[#e5c158]">
                 The Imperial Livestock of Cholistan
@@ -242,26 +240,26 @@ function LuxuryRedesignPage() {
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-xs uppercase tracking-[0.2em] font-medium text-white backdrop-blur-md transition-all hover:border-[#c5a059] hover:bg-white/10"
               >
-                <MessageCircle className="h-4 w-4 text-emerald-400" />
+                <MessageCircle className="h-4 w-4 text-[#d4af37]" />
                 <span>Concierge Inquiry</span>
               </a>
             </div>
 
             {/* 3 Metric Cards */}
             <div className="mt-16 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-6 border-t border-white/10 pt-8 text-left">
-              <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4 backdrop-blur-sm">
+              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur-sm">
                 <span className="text-[10px] uppercase tracking-[0.24em] text-[#c5a059] font-mono">Pedigree</span>
                 <p className="font-serif text-lg text-white mt-1">Cholistani Bloodlines</p>
                 <p className="text-xs text-white/60 mt-0.5">Directly preserved in Tehsil Yazman</p>
               </div>
 
-              <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4 backdrop-blur-sm">
+              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur-sm">
                 <span className="text-[10px] uppercase tracking-[0.24em] text-[#c5a059] font-mono">Feed</span>
                 <p className="font-serif text-lg text-white mt-1">100% Farm-Grown</p>
-                <p className="text-xs text-white/60 mt-0.5">Organic green fodder cut fresh daily</p>
+                <p className="text-xs text-white/60 mt-0.5">Natural fodder cut fresh daily</p>
               </div>
 
-              <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4 backdrop-blur-sm">
+              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur-sm">
                 <span className="text-[10px] uppercase tracking-[0.24em] text-[#c5a059] font-mono">Standards</span>
                 <p className="font-serif text-lg text-white mt-1">Ethical Husbandry</p>
                 <p className="text-xs text-white/60 mt-0.5">Year-round veterinarian protocol</p>
@@ -273,7 +271,7 @@ function LuxuryRedesignPage() {
         {/* =========================================
             CHAPTER 01: THE ESTATE & HERITAGE (EDITORIAL)
            ========================================= */}
-        <section id="about" className="relative py-28 md:py-36 bg-[#0f1411] border-y border-white/5">
+        <section id="about" className="relative py-28 md:py-36 bg-[#111116] border-y border-white/5">
           <div className="mx-auto max-w-7xl px-6">
             <div className="grid items-center gap-16 lg:grid-cols-12">
               {/* Left Column: Framed Archival Photo */}
@@ -293,7 +291,7 @@ function LuxuryRedesignPage() {
                   </div>
                 </div>
 
-                <div className="absolute -top-6 -right-6 hidden rounded-2xl border border-[#c5a059]/40 bg-[#0d120f] p-5 shadow-xl sm:block">
+                <div className="absolute -top-6 -right-6 hidden rounded-2xl border border-[#c5a059]/40 bg-[#16161c] p-5 shadow-xl sm:block">
                   <Award className="h-6 w-6 text-[#d4af37]" />
                   <p className="mt-2 font-serif text-sm font-semibold text-white">Registered Herd</p>
                   <p className="text-[10px] text-white/60 uppercase tracking-widest">Bahawalpur Division</p>
@@ -317,26 +315,26 @@ function LuxuryRedesignPage() {
 
                 {/* 3 Value Pillars */}
                 <div className="mt-10 grid gap-4 sm:grid-cols-3">
-                  <div className="rounded-2xl border border-white/10 bg-[#141b16] p-5 transition-all hover:border-[#c5a059]/50">
+                  <div className="rounded-2xl border border-white/10 bg-[#17171e] p-5 transition-all hover:border-[#c5a059]/50">
                     <Beef className="h-5 w-5 text-[#d4af37]" />
                     <h3 className="mt-3 font-serif text-lg text-white">Qurbani & Meat</h3>
-                    <p className="mt-1 text-xs text-white/60 leading-relaxed">
+                    <p className="mt-1 text-xs text-white/60 leading-relaxed font-light">
                       Handpicked males fed slowly with zero chemical shortcuts.
                     </p>
                   </div>
 
-                  <div className="rounded-2xl border border-white/10 bg-[#141b16] p-5 transition-all hover:border-[#c5a059]/50">
+                  <div className="rounded-2xl border border-white/10 bg-[#17171e] p-5 transition-all hover:border-[#c5a059]/50">
                     <Dna className="h-5 w-5 text-[#d4af37]" />
                     <h3 className="mt-3 font-serif text-lg text-white">Purebred Lines</h3>
-                    <p className="mt-1 text-xs text-white/60 leading-relaxed">
+                    <p className="mt-1 text-xs text-white/60 leading-relaxed font-light">
                       Resilient genetics selected for desert hardiness & high milk yield.
                     </p>
                   </div>
 
-                  <div className="rounded-2xl border border-white/10 bg-[#141b16] p-5 transition-all hover:border-[#c5a059]/50">
+                  <div className="rounded-2xl border border-white/10 bg-[#17171e] p-5 transition-all hover:border-[#c5a059]/50">
                     <HeartHandshake className="h-5 w-5 text-[#d4af37]" />
                     <h3 className="mt-3 font-serif text-lg text-white">Ethical Care</h3>
-                    <p className="mt-1 text-xs text-white/60 leading-relaxed">
+                    <p className="mt-1 text-xs text-white/60 leading-relaxed font-light">
                       Constant fresh water, open paddocks, and scheduled immunization.
                     </p>
                   </div>
@@ -347,9 +345,9 @@ function LuxuryRedesignPage() {
         </section>
 
         {/* =========================================
-            CHAPTER 02: THE LIVESTOCK COLLECTION (DARK LUXURY)
+            CHAPTER 02: THE LIVESTOCK COLLECTION (PURE OBSIDIAN & GOLD)
            ========================================= */}
-        <section id="animals" className="relative py-28 md:py-36 bg-[#0a0d0b]">
+        <section id="animals" className="relative py-28 md:py-36 bg-[#09090b]">
           <div className="mx-auto max-w-7xl px-6">
             {/* Header + Integrated Protocol Pill */}
             <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
@@ -366,8 +364,8 @@ function LuxuryRedesignPage() {
                     "Cholistani cattle, sheep and goats raised on the farm. Contact us for current availability and acquisition."}
                 </p>
 
-                {/* Integrated Protocol Banner */}
-                <div className="mt-5 inline-flex items-center gap-3 rounded-xl border border-[#c5a059]/30 bg-[#141a16] px-4 py-2.5 text-xs text-[#e8d5b5]">
+                {/* Integrated Protocol Banner (Warm Amber / Gold) */}
+                <div className="mt-5 inline-flex items-center gap-3 rounded-xl border border-[#c5a059]/30 bg-[#151419] px-4 py-2.5 text-xs text-[#e8d5b5]">
                   <ShieldCheck className="h-4 w-4 text-[#d4af37] shrink-0" />
                   <span>
                     <strong>Acquisition Protocol:</strong> Males prepared for Qurbani & Meat · Females reserved for Breeding & Dairy.
@@ -388,7 +386,7 @@ function LuxuryRedesignPage() {
                       className={`rounded-full px-5 py-2.5 text-xs font-mono tracking-wider uppercase transition-all cursor-pointer ${
                         active
                           ? "bg-[#c5a059] text-black font-bold shadow-[0_0_15px_rgba(197,160,89,0.4)]"
-                          : "border border-white/10 bg-[#131915] text-white/70 hover:border-[#c5a059]/50 hover:text-white"
+                          : "border border-white/10 bg-[#141419] text-white/70 hover:border-[#c5a059]/50 hover:text-white"
                       }`}
                     >
                       {label}
@@ -407,7 +405,7 @@ function LuxuryRedesignPage() {
                 return (
                   <article
                     key={card.id}
-                    className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#111713] transition-all duration-500 hover:border-[#c5a059]/70 hover:shadow-[0_15px_40px_rgba(0,0,0,0.6)]"
+                    className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#131318] transition-all duration-500 hover:border-[#c5a059]/70 hover:shadow-[0_15px_40px_rgba(0,0,0,0.6)]"
                   >
                     <div className="relative h-72 overflow-hidden">
                       <img
@@ -416,7 +414,7 @@ function LuxuryRedesignPage() {
                         loading="lazy"
                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#111713] via-black/20 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#131318] via-black/20 to-transparent" />
                       <div className="absolute top-4 left-4">
                         <span className="rounded-full border border-black/40 bg-black/60 px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-[#d4af37] backdrop-blur-md">
                           {card.category}
@@ -453,7 +451,7 @@ function LuxuryRedesignPage() {
                         )}
                         target="_blank"
                         rel="noreferrer"
-                        className="mt-6 inline-flex items-center justify-center gap-2 rounded-xl border border-[#c5a059]/40 bg-[#162019] py-3 text-xs uppercase tracking-wider font-semibold text-[#e5c158] transition-all hover:bg-[#c5a059] hover:text-black"
+                        className="mt-6 inline-flex items-center justify-center gap-2 rounded-xl border border-[#c5a059]/40 bg-[#1b1915] py-3 text-xs uppercase tracking-wider font-semibold text-[#e5c158] transition-all hover:bg-[#c5a059] hover:text-black"
                       >
                         <MessageCircle className="h-4 w-4" />
                         <span>{card.cta_label || "Inquire on WhatsApp"}</span>
@@ -487,7 +485,7 @@ function LuxuryRedesignPage() {
                     return (
                       <article
                         key={animal.id}
-                        className="group overflow-hidden rounded-2xl border border-white/10 bg-[#111713] transition-all hover:border-[#c5a059]/50 hover:shadow-xl"
+                        className="group overflow-hidden rounded-2xl border border-white/10 bg-[#131318] transition-all hover:border-[#c5a059]/50 hover:shadow-xl"
                       >
                         <AnimalPhoto
                           src={photo}
@@ -505,10 +503,10 @@ function LuxuryRedesignPage() {
                             <span
                               className={`rounded-md px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider ${
                                 sold
-                                  ? "bg-red-950/60 text-red-300 border border-red-800/40"
+                                  ? "bg-red-950/50 text-red-300 border border-red-800/40"
                                   : animal.availability === "Reserved"
-                                    ? "bg-amber-950/60 text-amber-300 border border-amber-800/40"
-                                    : "bg-emerald-950/60 text-emerald-300 border border-emerald-800/40"
+                                    ? "bg-amber-950/50 text-amber-300 border border-amber-800/40"
+                                    : "bg-[#c5a059]/20 text-[#e5c158] border border-[#c5a059]/40"
                               }`}
                             >
                               {animal.availability}
@@ -531,11 +529,11 @@ function LuxuryRedesignPage() {
                             <a
                               href={whatsappHref(
                                 settings.whatsapp,
-                                `Assalam-o-Alaikum, I am inquiring about "${animal.title}" (PKR ${animal.price ? animal.price.toLocaleString() : 'N/A'}) listed on your website.`,
+                                `Assalam-o-Alaikum, I am inquiring about "${animal.title}" (PKR ${animal.price ? Number(animal.price).toLocaleString() : 'N/A'}) listed on your website.`,
                               )}
                               target="_blank"
                               rel="noreferrer"
-                              className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#16221b] border border-emerald-600/40 py-2.5 text-xs font-semibold text-emerald-200 transition-all hover:bg-emerald-600 hover:text-black"
+                              className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#c5a059] to-[#dfc17b] py-2.5 text-xs font-semibold text-black transition-all hover:brightness-110 shadow-md"
                             >
                               <MessageCircle className="h-4 w-4" />
                               <span>WhatsApp Concierge</span>
@@ -554,7 +552,7 @@ function LuxuryRedesignPage() {
         {/* =========================================
             CHAPTER 03: SUSTENANCE & PASTURES (AGRICULTURE)
            ========================================= */}
-        <section id="agriculture" className="relative py-28 md:py-36 bg-[#0f1411] border-y border-white/5">
+        <section id="agriculture" className="relative py-28 md:py-36 bg-[#111116] border-y border-white/5">
           <div className="mx-auto max-w-7xl px-6">
             <div className="grid items-center gap-16 lg:grid-cols-12">
               <div className="lg:col-span-7">
@@ -574,7 +572,7 @@ function LuxuryRedesignPage() {
 
                 {/* 3 Hallmark Cards */}
                 <div className="mt-10 grid gap-4 sm:grid-cols-3">
-                  <div className="rounded-2xl border border-white/10 bg-[#141b16] p-5">
+                  <div className="rounded-2xl border border-white/10 bg-[#17171e] p-5">
                     <Wheat className="h-5 w-5 text-[#d4af37]" />
                     <h3 className="mt-3 font-serif text-lg text-white">
                       {settings.agriculture_point1_title || "Our Own Land"}
@@ -585,7 +583,7 @@ function LuxuryRedesignPage() {
                     </p>
                   </div>
 
-                  <div className="rounded-2xl border border-white/10 bg-[#141b16] p-5">
+                  <div className="rounded-2xl border border-white/10 bg-[#17171e] p-5">
                     <Sprout className="h-5 w-5 text-[#d4af37]" />
                     <h3 className="mt-3 font-serif text-lg text-white">
                       {settings.agriculture_point2_title || "Pure & Organic"}
@@ -596,7 +594,7 @@ function LuxuryRedesignPage() {
                     </p>
                   </div>
 
-                  <div className="rounded-2xl border border-white/10 bg-[#141b16] p-5">
+                  <div className="rounded-2xl border border-white/10 bg-[#17171e] p-5">
                     <HeartHandshake className="h-5 w-5 text-[#d4af37]" />
                     <h3 className="mt-3 font-serif text-lg text-white">
                       {settings.agriculture_point3_title || "Patience & Care"}
@@ -625,9 +623,9 @@ function LuxuryRedesignPage() {
         {/* =========================================
             CHAPTER 04: BIOTECHNOLOGY & EMBRYO TRANSFER
            ========================================= */}
-        <section id="embryo-transfer" className="relative py-28 md:py-36 bg-[#0a0d0b]">
+        <section id="embryo-transfer" className="relative py-28 md:py-36 bg-[#09090b]">
           <div className="mx-auto max-w-7xl px-6">
-            <div className="relative overflow-hidden rounded-3xl border border-[#c5a059]/30 bg-gradient-to-br from-[#121c16] via-[#0d1310] to-[#0a0d0b] p-8 sm:p-14 lg:p-20 shadow-2xl">
+            <div className="relative overflow-hidden rounded-3xl border border-[#c5a059]/30 bg-gradient-to-br from-[#18161f] via-[#121217] to-[#09090b] p-8 sm:p-14 lg:p-20 shadow-2xl">
               <div className="grid items-center gap-12 lg:grid-cols-12">
                 <div className="lg:col-span-7">
                   <div className="inline-flex items-center gap-2 rounded-full border border-[#c5a059]/40 bg-[#c5a059]/10 px-3.5 py-1 text-xs font-mono uppercase tracking-widest text-[#d4af37]">
@@ -678,7 +676,7 @@ function LuxuryRedesignPage() {
         {/* =========================================
             CHAPTER 05: ESTATE SERVICES
            ========================================= */}
-        <section id="services" className="py-28 md:py-36 bg-[#0f1411] border-t border-white/5">
+        <section id="services" className="py-28 md:py-36 bg-[#111116] border-t border-white/5">
           <div className="mx-auto max-w-7xl px-6">
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.3em] text-[#c5a059]">
@@ -699,7 +697,7 @@ function LuxuryRedesignPage() {
                 return (
                   <article
                     key={service.id}
-                    className="flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-[#131a15] p-6 transition-all hover:border-[#c5a059]/50 hover:shadow-xl"
+                    className="flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-[#17171e] p-6 transition-all hover:border-[#c5a059]/50 hover:shadow-xl"
                   >
                     <div>
                       {img && (
@@ -739,7 +737,7 @@ function LuxuryRedesignPage() {
         {/* =========================================
             CHAPTER 06: VISUAL ARCHIVE / GALLERY
            ========================================= */}
-        <section id="gallery" className="py-28 md:py-36 bg-[#0a0d0b]">
+        <section id="gallery" className="py-28 md:py-36 bg-[#09090b]">
           <div className="mx-auto max-w-7xl px-6">
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.3em] text-[#c5a059]">
@@ -760,7 +758,7 @@ function LuxuryRedesignPage() {
         {/* =========================================
             CHAPTER 07: PRIVATE INQUIRY & LOCATION
            ========================================= */}
-        <section id="booking" className="py-28 md:py-36 bg-[#0f1411] border-t border-white/5">
+        <section id="booking" className="py-28 md:py-36 bg-[#111116] border-t border-white/5">
           <div className="mx-auto max-w-7xl px-6">
             <div className="grid gap-16 lg:grid-cols-12">
               <div className="lg:col-span-5">
@@ -775,7 +773,7 @@ function LuxuryRedesignPage() {
                   Submit your custom livestock request. The farm management will personally verify availability and discuss direct inspection or reservation.
                 </p>
 
-                <div className="mt-8 space-y-4 rounded-2xl border border-white/10 bg-[#131a15] p-6 text-sm">
+                <div className="mt-8 space-y-4 rounded-2xl border border-white/10 bg-[#17171e] p-6 text-sm">
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-[#d4af37] shrink-0 mt-0.5" />
                     <div>
@@ -797,7 +795,7 @@ function LuxuryRedesignPage() {
               </div>
 
               <div className="lg:col-span-7">
-                <div className="rounded-3xl border border-white/10 bg-[#111713] p-8 shadow-2xl">
+                <div className="rounded-3xl border border-white/10 bg-[#16161c] p-8 shadow-2xl">
                   <BookingForm settings={settings} breeds={breeds} />
                 </div>
               </div>
@@ -809,7 +807,7 @@ function LuxuryRedesignPage() {
       {/* =========================================
           LUXURY ESTATE FOOTER
          ========================================= */}
-      <footer className="border-t border-white/10 bg-[#070908] py-16 text-white/70">
+      <footer className="border-t border-white/10 bg-[#070709] py-16 text-white/70">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             <div>
