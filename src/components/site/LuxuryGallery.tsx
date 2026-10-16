@@ -50,24 +50,24 @@ export function LuxuryGallery({ images }: { images: GalleryImage[] }) {
           : items.filter((item) => item.category === filter);
 
   return (
-    <section id="gallery" className="py-24 md:py-32 bg-[#09090b] border-t border-white/5">
+    <section id="gallery" className="py-24 md:py-32 bg-[#f5eee3] border-t border-[#e4dacb]">
       <div className="mx-auto max-w-7xl px-6">
         {/* Section Header & Interactive Filter Bar */}
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between border-b border-white/10 pb-8">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between border-b border-[#e4dacb] pb-8">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.3em] text-[#c5a059]">
-              <span className="h-px w-6 bg-[#c5a059]" />
+            <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.3em] text-[#9e7030]">
+              <span className="h-px w-6 bg-[#9e7030]" />
               <span>06 / Visual Archive</span>
             </div>
-            <h2 className="mt-3 font-serif text-3xl sm:text-5xl text-white font-normal">
+            <h2 className="mt-3 font-serif text-3xl sm:text-5xl text-[#1f1b18] font-normal">
               Moments at the Farm
             </h2>
-            <p className="mt-3 text-sm text-white/60 font-light">
+            <p className="mt-3 text-sm sm:text-base text-[#5c544d] font-light">
               High-resolution glimpses into daily life, pedigree care, and seasonal pasture across our Cholistan estate.
             </p>
           </div>
 
-          {/* Filter Pills with 100% visible, high-contrast text */}
+          {/* Filter Pills with warm calm styling */}
           <div className="flex flex-wrap items-center gap-2">
             {categories.map((category) => {
               const isActive = filter === category;
@@ -76,10 +76,10 @@ export function LuxuryGallery({ images }: { images: GalleryImage[] }) {
                   key={category}
                   type="button"
                   onClick={() => setFilter(category)}
-                  className={`rounded-full px-4 py-2 text-xs font-medium tracking-wide transition-all duration-200 cursor-pointer ${
+                  className={`rounded-full px-5 py-2 text-xs font-medium tracking-wide transition-all duration-200 cursor-pointer ${
                     isActive
-                      ? "bg-[#c5a059] text-black font-semibold shadow-[0_0_15px_rgba(197,160,89,0.35)] scale-105"
-                      : "border border-white/20 bg-[#16161c] text-white hover:border-[#c5a059]/60 hover:bg-[#202028] hover:text-[#e5c158]"
+                      ? "bg-[#b07d37] text-white font-semibold shadow-sm"
+                      : "border border-[#d9ccbc] bg-white text-[#5c544d] hover:border-[#b07d37] hover:text-[#1f1b18]"
                   }`}
                 >
                   {category}
@@ -95,18 +95,18 @@ export function LuxuryGallery({ images }: { images: GalleryImage[] }) {
             item.isVideo ? (
               <figure
                 key={`${item.src}-${index}`}
-                className="overflow-hidden rounded-2xl border border-white/10 bg-[#121216] shadow-xl transition-all hover:border-[#c5a059]/40"
+                className="overflow-hidden rounded-2xl border border-[#e4dacb] bg-white shadow-sm transition-all hover:border-[#b07d37]/60 hover:shadow-md"
               >
                 <video
                   src={item.src}
                   controls
                   playsInline
                   preload="metadata"
-                  className="h-60 w-full bg-black object-cover"
+                  className="h-60 w-full bg-[#1f1b18] object-cover"
                 />
                 <figcaption className="flex items-center justify-between p-4">
-                  <span className="text-sm text-white/90 font-medium truncate">{item.caption}</span>
-                  <span className="shrink-0 rounded border border-[#c5a059]/30 bg-[#c5a059]/10 px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-[#d4af37]">
+                  <span className="text-sm text-[#1f1b18] font-medium truncate">{item.caption}</span>
+                  <span className="shrink-0 rounded border border-[#e4dacb] bg-[#f8f3eb] px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-[#8e6022]">
                     {item.category}
                   </span>
                 </figcaption>
@@ -116,20 +116,20 @@ export function LuxuryGallery({ images }: { images: GalleryImage[] }) {
                 key={`${item.src}-${index}`}
                 type="button"
                 onClick={() => setActive(item)}
-                className="group overflow-hidden rounded-2xl border border-white/10 bg-[#121216] text-left shadow-xl transition-all duration-300 hover:border-[#c5a059]/50 hover:-translate-y-1 cursor-pointer"
+                className="group overflow-hidden rounded-2xl border border-[#e4dacb] bg-white text-left shadow-sm transition-all duration-300 hover:border-[#b07d37]/60 hover:shadow-md hover:-translate-y-0.5 cursor-pointer"
               >
-                <div className="relative h-60 w-full overflow-hidden bg-black/40">
+                <div className="relative h-60 w-full overflow-hidden bg-[#e9e1d5]">
                   <img
                     src={item.src}
                     alt={item.caption}
                     loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#09090b]/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity" />
                 </div>
                 <div className="flex items-center justify-between p-4">
-                  <span className="text-sm text-white/90 font-medium truncate">{item.caption}</span>
-                  <span className="shrink-0 rounded border border-[#c5a059]/30 bg-[#c5a059]/10 px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-[#d4af37]">
+                  <span className="text-sm text-[#1f1b18] font-medium truncate">{item.caption}</span>
+                  <span className="shrink-0 rounded border border-[#e4dacb] bg-[#f8f3eb] px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-[#8e6022]">
                     {item.category}
                   </span>
                 </div>
@@ -141,13 +141,13 @@ export function LuxuryGallery({ images }: { images: GalleryImage[] }) {
 
       {/* Lightbox Dialog */}
       <Dialog open={!!active} onOpenChange={(open) => !open && setActive(null)}>
-        <DialogContent className="max-w-4xl border border-white/15 bg-[#121216] p-6 text-white shadow-2xl sm:rounded-2xl">
-          <DialogTitle className="flex items-center gap-2 font-serif text-lg text-white">
-            {active?.isVideo && <Play className="h-4 w-4 text-[#d4af37]" />}
+        <DialogContent className="max-w-4xl border border-[#e4dacb] bg-[#fcfaf6] p-6 text-[#1f1b18] shadow-2xl sm:rounded-2xl">
+          <DialogTitle className="flex items-center gap-2 font-serif text-lg text-[#1f1b18]">
+            {active?.isVideo && <Play className="h-4 w-4 text-[#b07d37]" />}
             {active?.caption}
           </DialogTitle>
           {active && (
-            <div className="mt-4 overflow-hidden rounded-xl border border-white/10 bg-black/60">
+            <div className="mt-4 overflow-hidden rounded-xl border border-[#e4dacb] bg-black">
               <img src={active.src} alt={active.caption} className="max-h-[75vh] w-full object-contain" />
             </div>
           )}

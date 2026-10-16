@@ -8,7 +8,6 @@ import {
   Phone,
   MapPin,
   Send,
-  Clock,
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
@@ -127,64 +126,61 @@ export function LuxuryBookingSection({
   }
 
   return (
-    <section id="booking" className="py-24 md:py-32 bg-[#0b0b0e] border-t border-white/5 relative overflow-hidden">
-      {/* Ambient background glow */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-[#c5a059]/5 rounded-full blur-3xl pointer-events-none" />
-
+    <section id="booking" className="py-24 md:py-32 bg-[#fcfaf6] border-t border-[#e4dacb] relative overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 relative z-10">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-start">
           {/* Left Column: Direct Contact & Estate Assurance */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.3em] text-[#c5a059]">
-                <span className="h-px w-6 bg-[#c5a059]" />
+              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.3em] text-[#9e7030]">
+                <span className="h-px w-6 bg-[#9e7030]" />
                 <span>07 / Acquisition & Inquiries</span>
               </div>
-              <h2 className="mt-3 font-serif text-3xl sm:text-5xl text-white font-normal leading-tight">
+              <h2 className="mt-3 font-serif text-3xl sm:text-5xl text-[#1f1b18] font-normal leading-tight">
                 Reserve Your Livestock
               </h2>
-              <p className="mt-4 text-sm sm:text-base text-white/70 font-light leading-relaxed">
+              <p className="mt-4 text-sm sm:text-base text-[#5c544d] font-light leading-relaxed">
                 Submit your customized requirements. Our team personally reviews inventory, verifies bloodlines, and arranges direct video inspections or on-farm visits.
               </p>
 
               {/* Direct Reach Cards */}
               <div className="mt-8 space-y-3.5">
                 {/* Location */}
-                <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-[#121217] p-4.5 transition-all hover:border-[#c5a059]/40">
-                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#c5a059]/10 border border-[#c5a059]/20 text-[#d4af37]">
+                <div className="flex items-start gap-4 rounded-2xl border border-[#e4dacb] bg-white p-4.5 shadow-sm transition-all hover:border-[#b07d37]/50">
+                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#f8f3eb] border border-[#e4dacb] text-[#8e6022]">
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-xs font-mono uppercase tracking-widest text-[#c5a059]">Farm Estate Location</p>
-                    <p className="text-sm font-serif text-white mt-1 leading-snug">{settings.address}</p>
-                    <p className="text-xs text-white/50 mt-0.5">Tehsil Yazman · Bahawalpur Division</p>
+                    <p className="text-xs font-mono uppercase tracking-widest text-[#9e7030]">Farm Estate Location</p>
+                    <p className="text-sm font-serif text-[#1f1b18] mt-1 leading-snug">{settings.address}</p>
+                    <p className="text-xs text-[#70665c] mt-0.5">Tehsil Yazman · Bahawalpur Division</p>
                   </div>
                 </div>
 
                 {/* Direct Phone */}
-                <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-[#121217] p-4.5 transition-all hover:border-[#c5a059]/40">
-                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#c5a059]/10 border border-[#c5a059]/20 text-[#d4af37]">
+                <div className="flex items-start gap-4 rounded-2xl border border-[#e4dacb] bg-white p-4.5 shadow-sm transition-all hover:border-[#b07d37]/50">
+                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#f8f3eb] border border-[#e4dacb] text-[#8e6022]">
                     <Phone className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-xs font-mono uppercase tracking-widest text-[#c5a059]">Direct Voice Line</p>
+                    <p className="text-xs font-mono uppercase tracking-widest text-[#9e7030]">Direct Voice Line</p>
                     <a
                       href={telHref(settings.phone)}
-                      className="text-base font-serif text-white hover:text-[#d4af37] transition-colors mt-1 block"
+                      className="text-base font-serif text-[#1f1b18] hover:text-[#b07d37] transition-colors mt-1 block"
                     >
                       {settings.phone}
                     </a>
-                    <p className="text-xs text-white/50 mt-0.5">Contact: {settings.contact_person}</p>
+                    <p className="text-xs text-[#70665c] mt-0.5">Contact: {settings.contact_person}</p>
                   </div>
                 </div>
 
                 {/* Instant WhatsApp */}
-                <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-[#121217] p-4.5 transition-all hover:border-[#c5a059]/40">
-                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#c5a059]/10 border border-[#c5a059]/20 text-[#d4af37]">
+                <div className="flex items-start gap-4 rounded-2xl border border-[#e4dacb] bg-white p-4.5 shadow-sm transition-all hover:border-[#b07d37]/50">
+                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#f8f3eb] border border-[#e4dacb] text-[#8e6022]">
                     <MessageCircle className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-xs font-mono uppercase tracking-widest text-[#c5a059]">Direct WhatsApp</p>
+                    <p className="text-xs font-mono uppercase tracking-widest text-[#9e7030]">Direct WhatsApp</p>
                     <a
                       href={whatsappHref(
                         settings.whatsapp,
@@ -192,18 +188,18 @@ export function LuxuryBookingSection({
                       )}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-base font-serif text-white hover:text-[#d4af37] transition-colors mt-1 block"
+                      className="text-base font-serif text-[#1f1b18] hover:text-[#b07d37] transition-colors mt-1 block font-medium"
                     >
                       Chat on WhatsApp ↗
                     </a>
-                    <p className="text-xs text-white/50 mt-0.5">Fastest response for photos & live videos</p>
+                    <p className="text-xs text-[#70665c] mt-0.5">Fastest response for photos & live videos</p>
                   </div>
                 </div>
               </div>
 
               {/* Protocol Assurance Note */}
-              <div className="mt-8 flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.02] p-4 text-xs text-white/50">
-                <ShieldCheck className="h-5 w-5 text-[#d4af37] shrink-0" />
+              <div className="mt-8 flex items-center gap-3 rounded-xl border border-[#e4dacb] bg-[#f8f5ee] p-4 text-xs text-[#5c544d]">
+                <ShieldCheck className="h-5 w-5 text-[#8e6022] shrink-0" />
                 <span>
                   All inquiries are non-binding requests. Booking confirmation follows individual selection, weight verification, and health audit.
                 </span>
@@ -213,26 +209,26 @@ export function LuxuryBookingSection({
 
           {/* Right Column: Clean, Polished Luxury Form Container */}
           <div className="lg:col-span-7">
-            <div className="rounded-3xl border border-white/10 bg-[#131319] p-7 sm:p-10 shadow-2xl relative">
-              <div className="mb-6 flex items-center justify-between border-b border-white/10 pb-4">
+            <div className="rounded-3xl border border-[#e4dacb] bg-white p-7 sm:p-10 shadow-lg relative">
+              <div className="mb-6 flex items-center justify-between border-b border-[#e4dacb] pb-4">
                 <div>
-                  <h3 className="font-serif text-2xl text-white">Acquisition Inquiry</h3>
-                  <p className="text-xs text-white/50 mt-1">Specify your target requirements below</p>
+                  <h3 className="font-serif text-2xl text-[#1f1b18]">Acquisition Inquiry</h3>
+                  <p className="text-xs text-[#70665c] mt-1">Specify your target requirements below</p>
                 </div>
-                <div className="hidden sm:flex items-center gap-1.5 rounded-full border border-[#c5a059]/30 bg-[#c5a059]/10 px-3 py-1 text-[11px] font-mono text-[#e5c158]">
-                  <Sparkles className="h-3 w-3 text-[#d4af37]" />
+                <div className="hidden sm:flex items-center gap-1.5 rounded-full border border-[#e4dacb] bg-[#f8f3eb] px-3 py-1 text-[11px] font-mono text-[#8e6022]">
+                  <Sparkles className="h-3 w-3 text-[#b07d37]" />
                   <span>Immediate Review</span>
                 </div>
               </div>
 
               {submitted ? (
                 <div className="py-10 text-center space-y-6">
-                  <div className="mx-auto grid h-16 w-16 place-items-center rounded-full border border-[#c5a059]/40 bg-[#c5a059]/10 text-[#d4af37] shadow-[0_0_25px_rgba(197,160,89,0.2)]">
-                    <CheckCircle2 className="h-8 w-8" />
+                  <div className="mx-auto grid h-16 w-16 place-items-center rounded-full border border-[#b07d37]/40 bg-[#f8f3eb] text-[#8e6022] shadow-sm">
+                    <CheckCircle2 className="h-8 w-8 text-[#b07d37]" />
                   </div>
                   <div>
-                    <h4 className="font-serif text-2xl text-white">Inquiry Received</h4>
-                    <p className="mt-2 text-sm text-white/60 max-w-md mx-auto leading-relaxed">
+                    <h4 className="font-serif text-2xl text-[#1f1b18]">Inquiry Received</h4>
+                    <p className="mt-2 text-sm text-[#5c544d] max-w-md mx-auto leading-relaxed">
                       Thank you. Your inquiry has been safely dispatched to the estate management. You may also forward the generated summary directly to WhatsApp for rapid processing.
                     </p>
                   </div>
@@ -242,7 +238,7 @@ export function LuxuryBookingSection({
                       href={whatsappHref(settings.whatsapp, submitted.summary)}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#c5a059] to-[#dfc17b] px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-black shadow-lg hover:brightness-110 transition-all"
+                      className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#b07d37] px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-white shadow-md hover:bg-[#97692b] transition-all"
                     >
                       <MessageCircle className="h-4 w-4" />
                       Forward on WhatsApp
@@ -250,7 +246,7 @@ export function LuxuryBookingSection({
                     <button
                       type="button"
                       onClick={() => setSubmitted(null)}
-                      className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-white hover:bg-white/10 transition-all"
+                      className="inline-flex items-center justify-center rounded-xl border border-[#d9ccbc] bg-white px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-[#1f1b18] hover:bg-[#f8f5ee] transition-all"
                     >
                       Submit Another Request
                     </button>
@@ -266,17 +262,17 @@ export function LuxuryBookingSection({
                         name="full_name"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-mono uppercase tracking-wider text-white/80">
+                            <FormLabel className="text-xs font-mono uppercase tracking-wider text-[#4a443e]">
                               Full Name *
                             </FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="e.g. Asad Ejaz"
-                                className="h-11 rounded-xl border border-white/15 bg-[#1a1a22] text-white placeholder:text-white/30 focus-visible:border-[#c5a059] focus-visible:ring-[#c5a059]/20"
+                                className="h-11 rounded-xl border border-[#d9ccbc] bg-[#fcfaf6] text-[#1f1b18] placeholder:text-[#998f82] focus-visible:border-[#b07d37] focus-visible:ring-[#b07d37]/20"
                                 {...field}
                               />
                             </FormControl>
-                            <FormMessage className="text-xs text-red-400" />
+                            <FormMessage className="text-xs text-red-500" />
                           </FormItem>
                         )}
                       />
@@ -286,18 +282,18 @@ export function LuxuryBookingSection({
                         name="phone"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-mono uppercase tracking-wider text-white/80">
+                            <FormLabel className="text-xs font-mono uppercase tracking-wider text-[#4a443e]">
                               Phone Number *
                             </FormLabel>
                             <FormControl>
                               <Input
                                 inputMode="tel"
                                 placeholder="03XXXXXXXXX"
-                                className="h-11 rounded-xl border border-white/15 bg-[#1a1a22] text-white placeholder:text-white/30 focus-visible:border-[#c5a059] focus-visible:ring-[#c5a059]/20"
+                                className="h-11 rounded-xl border border-[#d9ccbc] bg-[#fcfaf6] text-[#1f1b18] placeholder:text-[#998f82] focus-visible:border-[#b07d37] focus-visible:ring-[#b07d37]/20"
                                 {...field}
                               />
                             </FormControl>
-                            <FormMessage className="text-xs text-red-400" />
+                            <FormMessage className="text-xs text-red-500" />
                           </FormItem>
                         )}
                       />
@@ -310,18 +306,18 @@ export function LuxuryBookingSection({
                         name="whatsapp"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-mono uppercase tracking-wider text-white/80">
+                            <FormLabel className="text-xs font-mono uppercase tracking-wider text-[#4a443e]">
                               WhatsApp (Optional)
                             </FormLabel>
                             <FormControl>
                               <Input
                                 inputMode="tel"
                                 placeholder="03XXXXXXXXX"
-                                className="h-11 rounded-xl border border-white/15 bg-[#1a1a22] text-white placeholder:text-white/30 focus-visible:border-[#c5a059] focus-visible:ring-[#c5a059]/20"
+                                className="h-11 rounded-xl border border-[#d9ccbc] bg-[#fcfaf6] text-[#1f1b18] placeholder:text-[#998f82] focus-visible:border-[#b07d37] focus-visible:ring-[#b07d37]/20"
                                 {...field}
                               />
                             </FormControl>
-                            <FormMessage className="text-xs text-red-400" />
+                            <FormMessage className="text-xs text-red-500" />
                           </FormItem>
                         )}
                       />
@@ -331,28 +327,28 @@ export function LuxuryBookingSection({
                         name="animal_type"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-mono uppercase tracking-wider text-white/80">
+                            <FormLabel className="text-xs font-mono uppercase tracking-wider text-[#4a443e]">
                               Animal Category *
                             </FormLabel>
                             <Select onValueChange={field.onChange} value={field.value}>
                               <FormControl>
-                                <SelectTrigger className="h-11 rounded-xl border border-white/15 bg-[#1a1a22] text-white focus:border-[#c5a059] focus:ring-[#c5a059]/20">
+                                <SelectTrigger className="h-11 rounded-xl border border-[#d9ccbc] bg-[#fcfaf6] text-[#1f1b18] focus:border-[#b07d37] focus:ring-[#b07d37]/20">
                                   <SelectValue placeholder="Select Category" />
                                 </SelectTrigger>
                               </FormControl>
-                              <SelectContent className="border border-white/15 bg-[#1a1a22] text-white shadow-2xl">
+                              <SelectContent className="border border-[#e4dacb] bg-white text-[#1f1b18] shadow-xl">
                                 {ANIMAL_CATEGORIES.map((category) => (
                                   <SelectItem
                                     key={category}
                                     value={category}
-                                    className="text-white/90 hover:bg-[#c5a059] hover:text-black focus:bg-[#c5a059] focus:text-black cursor-pointer"
+                                    className="text-[#1f1b18] hover:bg-[#f8f3eb] hover:text-[#8e6022] focus:bg-[#f8f3eb] focus:text-[#8e6022] cursor-pointer"
                                   >
                                     {ANIMAL_TYPE_LABELS[category] ?? category}
                                   </SelectItem>
                                 ))}
                               </SelectContent>
                             </Select>
-                            <FormMessage className="text-xs text-red-400" />
+                            <FormMessage className="text-xs text-red-500" />
                           </FormItem>
                         )}
                       />
@@ -365,28 +361,28 @@ export function LuxuryBookingSection({
                         name="breed"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-mono uppercase tracking-wider text-white/80">
+                            <FormLabel className="text-xs font-mono uppercase tracking-wider text-[#4a443e]">
                               Breed Preference *
                             </FormLabel>
                             <Select onValueChange={field.onChange} value={field.value}>
                               <FormControl>
-                                <SelectTrigger className="h-11 rounded-xl border border-white/15 bg-[#1a1a22] text-white focus:border-[#c5a059] focus:ring-[#c5a059]/20">
+                                <SelectTrigger className="h-11 rounded-xl border border-[#d9ccbc] bg-[#fcfaf6] text-[#1f1b18] focus:border-[#b07d37] focus:ring-[#b07d37]/20">
                                   <SelectValue placeholder="Select Breed" />
                                 </SelectTrigger>
                               </FormControl>
-                              <SelectContent className="border border-white/15 bg-[#1a1a22] text-white shadow-2xl">
+                              <SelectContent className="border border-[#e4dacb] bg-white text-[#1f1b18] shadow-xl">
                                 {breedOptions.map((breed) => (
                                   <SelectItem
                                     key={breed}
                                     value={breed}
-                                    className="text-white/90 hover:bg-[#c5a059] hover:text-black focus:bg-[#c5a059] focus:text-black cursor-pointer"
+                                    className="text-[#1f1b18] hover:bg-[#f8f3eb] hover:text-[#8e6022] focus:bg-[#f8f3eb] focus:text-[#8e6022] cursor-pointer"
                                   >
                                     {breed}
                                   </SelectItem>
                                 ))}
                               </SelectContent>
                             </Select>
-                            <FormMessage className="text-xs text-red-400" />
+                            <FormMessage className="text-xs text-red-500" />
                           </FormItem>
                         )}
                       />
@@ -396,28 +392,28 @@ export function LuxuryBookingSection({
                         name="purpose"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-mono uppercase tracking-wider text-white/80">
+                            <FormLabel className="text-xs font-mono uppercase tracking-wider text-[#4a443e]">
                               Intended Purpose *
                             </FormLabel>
                             <Select onValueChange={field.onChange} value={field.value}>
                               <FormControl>
-                                <SelectTrigger className="h-11 rounded-xl border border-white/15 bg-[#1a1a22] text-white focus:border-[#c5a059] focus:ring-[#c5a059]/20">
+                                <SelectTrigger className="h-11 rounded-xl border border-[#d9ccbc] bg-[#fcfaf6] text-[#1f1b18] focus:border-[#b07d37] focus:ring-[#b07d37]/20">
                                   <SelectValue placeholder="Select Purpose" />
                                 </SelectTrigger>
                               </FormControl>
-                              <SelectContent className="border border-white/15 bg-[#1a1a22] text-white shadow-2xl">
+                              <SelectContent className="border border-[#e4dacb] bg-white text-[#1f1b18] shadow-xl">
                                 {PURPOSES.map((purpose) => (
                                   <SelectItem
                                     key={purpose}
                                     value={purpose}
-                                    className="text-white/90 hover:bg-[#c5a059] hover:text-black focus:bg-[#c5a059] focus:text-black cursor-pointer"
+                                    className="text-[#1f1b18] hover:bg-[#f8f3eb] hover:text-[#8e6022] focus:bg-[#f8f3eb] focus:text-[#8e6022] cursor-pointer"
                                   >
                                     {purpose}
                                   </SelectItem>
                                 ))}
                               </SelectContent>
                             </Select>
-                            <FormMessage className="text-xs text-red-400" />
+                            <FormMessage className="text-xs text-red-500" />
                           </FormItem>
                         )}
                       />
@@ -430,7 +426,7 @@ export function LuxuryBookingSection({
                         name="quantity"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-mono uppercase tracking-wider text-white/80">
+                            <FormLabel className="text-xs font-mono uppercase tracking-wider text-[#4a443e]">
                               Quantity *
                             </FormLabel>
                             <FormControl>
@@ -438,11 +434,11 @@ export function LuxuryBookingSection({
                                 type="number"
                                 min={1}
                                 max={500}
-                                className="h-11 rounded-xl border border-white/15 bg-[#1a1a22] text-white focus-visible:border-[#c5a059] focus-visible:ring-[#c5a059]/20"
+                                className="h-11 rounded-xl border border-[#d9ccbc] bg-[#fcfaf6] text-[#1f1b18] focus-visible:border-[#b07d37] focus-visible:ring-[#b07d37]/20"
                                 {...field}
                               />
                             </FormControl>
-                            <FormMessage className="text-xs text-red-400" />
+                            <FormMessage className="text-xs text-red-500" />
                           </FormItem>
                         )}
                       />
@@ -452,28 +448,28 @@ export function LuxuryBookingSection({
                         name="delivery"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-mono uppercase tracking-wider text-white/80">
+                            <FormLabel className="text-xs font-mono uppercase tracking-wider text-[#4a443e]">
                               Delivery Preference *
                             </FormLabel>
                             <Select onValueChange={field.onChange} value={field.value}>
                               <FormControl>
-                                <SelectTrigger className="h-11 rounded-xl border border-white/15 bg-[#1a1a22] text-white focus:border-[#c5a059] focus:ring-[#c5a059]/20">
+                                <SelectTrigger className="h-11 rounded-xl border border-[#d9ccbc] bg-[#fcfaf6] text-[#1f1b18] focus:border-[#b07d37] focus:ring-[#b07d37]/20">
                                   <SelectValue placeholder="Select Delivery" />
                                 </SelectTrigger>
                               </FormControl>
-                              <SelectContent className="border border-white/15 bg-[#1a1a22] text-white shadow-2xl">
+                              <SelectContent className="border border-[#e4dacb] bg-white text-[#1f1b18] shadow-xl">
                                 {DELIVERY_OPTIONS.map((option) => (
                                   <SelectItem
                                     key={option}
                                     value={option}
-                                    className="text-white/90 hover:bg-[#c5a059] hover:text-black focus:bg-[#c5a059] focus:text-black cursor-pointer"
+                                    className="text-[#1f1b18] hover:bg-[#f8f3eb] hover:text-[#8e6022] focus:bg-[#f8f3eb] focus:text-[#8e6022] cursor-pointer"
                                   >
                                     {option}
                                   </SelectItem>
                                 ))}
                               </SelectContent>
                             </Select>
-                            <FormMessage className="text-xs text-red-400" />
+                            <FormMessage className="text-xs text-red-500" />
                           </FormItem>
                         )}
                       />
@@ -485,18 +481,18 @@ export function LuxuryBookingSection({
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-xs font-mono uppercase tracking-wider text-white/80">
+                          <FormLabel className="text-xs font-mono uppercase tracking-wider text-[#4a443e]">
                             Specific Requests / Weight / Details (Optional)
                           </FormLabel>
                           <FormControl>
                             <Textarea
                               rows={3}
                               placeholder="e.g. Inquiring for purebred Cholistani bull with heavy hump, approx 500-600kg, delivery to Lahore before Eid."
-                              className="rounded-xl border border-white/15 bg-[#1a1a22] text-white placeholder:text-white/30 focus-visible:border-[#c5a059] focus-visible:ring-[#c5a059]/20"
+                              className="rounded-xl border border-[#d9ccbc] bg-[#fcfaf6] text-[#1f1b18] placeholder:text-[#998f82] focus-visible:border-[#b07d37] focus-visible:ring-[#b07d37]/20"
                               {...field}
                             />
                           </FormControl>
-                          <FormMessage className="text-xs text-red-400" />
+                          <FormMessage className="text-xs text-red-500" />
                         </FormItem>
                       )}
                     />
@@ -505,7 +501,7 @@ export function LuxuryBookingSection({
                     <button
                       type="submit"
                       disabled={form.formState.isSubmitting}
-                      className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#c5a059] to-[#dfc17b] py-3.5 text-xs font-semibold uppercase tracking-[0.18em] text-black shadow-[0_0_20px_rgba(197,160,89,0.25)] hover:brightness-110 active:scale-[0.99] transition-all disabled:opacity-50 cursor-pointer"
+                      className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#b07d37] hover:bg-[#97692b] py-3.5 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-md hover:shadow-lg active:scale-[0.99] transition-all disabled:opacity-50 cursor-pointer"
                     >
                       <Send className="h-4 w-4" />
                       <span>{form.formState.isSubmitting ? "Dispatching Inquiry..." : "Submit Acquisition Inquiry"}</span>
