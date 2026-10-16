@@ -36,7 +36,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { AnimalPhoto } from "@/components/site/AnimalPhoto";
 import { BookingForm } from "@/components/site/BookingForm";
-import { Gallery } from "@/components/site/Gallery";
+import { LuxuryGallery } from "@/components/site/LuxuryGallery";
 
 import heroFallback from "@/assets/hero-cattle.jpg";
 import aboutFallback from "@/assets/cholistan.jpg";
@@ -722,23 +722,7 @@ function LuxuryRedesignPage() {
         {/* =========================================
             CHAPTER 06: VISUAL ARCHIVE / GALLERY
            ========================================= */}
-        <section id="gallery" className="py-28 md:py-36 bg-[#09090b]">
-          <div className="mx-auto max-w-7xl px-6">
-            <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.3em] text-[#c5a059]">
-                <span className="h-px w-6 bg-[#c5a059]" />
-                <span>06 / Visual Archive</span>
-              </div>
-              <h2 className="mt-3 font-serif text-3xl sm:text-5xl text-white font-normal">
-                Moments at the Farm
-              </h2>
-            </div>
-
-            <div className="mt-12">
-              <Gallery images={gallery} />
-            </div>
-          </div>
-        </section>
+        <LuxuryGallery images={gallery} />
 
         {/* =========================================
             CHAPTER 07: PRIVATE INQUIRY & LOCATION
