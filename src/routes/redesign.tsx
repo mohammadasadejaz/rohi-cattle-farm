@@ -269,112 +269,61 @@ function LuxuryRedesignPage() {
         </section>
 
         {/* =========================================
-            CHAPTER 01: THE ESTATE & HERITAGE (EDITORIAL)
+            CHAPTER 01: THE HERITAGE (CLEAN & REFINED)
            ========================================= */}
-        <section id="about" className="relative py-24 md:py-32 bg-[#111116] border-y border-white/5">
+        <section id="about" className="relative py-20 md:py-28 bg-[#0e0e12] border-y border-white/5">
           <div className="mx-auto max-w-7xl px-6">
-            {/* Section Header with Registered Herd Pill */}
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-10 border-b border-white/10">
-              <div>
-                <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.3em] text-[#c5a059]">
+            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+              {/* Left Column: Pure Landscape Photography */}
+              <div className="overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
+                <img
+                  src={aboutImg}
+                  alt="Iqbal Cattle Farm Estate"
+                  className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-105"
+                />
+              </div>
+
+              {/* Right Column: Narrative & Minimalist Pillars */}
+              <div className="flex flex-col justify-center">
+                <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-[#c5a059]">
                   <span className="h-px w-6 bg-[#c5a059]" />
                   <span>01 / The Heritage</span>
                 </div>
-                <h2 className="mt-3 font-serif text-3xl sm:text-5xl md:text-6xl font-normal leading-tight text-white max-w-3xl">
+
+                <h2 className="mt-4 font-serif text-3xl sm:text-5xl text-white font-normal leading-tight">
                   {settings.about_title || "About Iqbal Cattle Farm"}
                 </h2>
-              </div>
-              <div className="inline-flex items-center gap-3 rounded-full border border-[#c5a059]/40 bg-[#16161c] px-5 py-2.5 shrink-0">
-                <Award className="h-4 w-4 text-[#d4af37]" />
-                <span className="text-xs uppercase tracking-widest text-[#e5c158] font-mono">
-                  Registered Herd · Bahawalpur Division
-                </span>
-              </div>
-            </div>
 
-            {/* Main Narrative & Landscape Showcase */}
-            <div className="mt-12 grid items-center gap-12 lg:grid-cols-12">
-              {/* Left Column: Narrative Story & Key Stats */}
-              <div className="lg:col-span-5 flex flex-col justify-center">
-                <p className="text-base sm:text-lg leading-relaxed text-white/70 font-light whitespace-pre-line">
+                <p className="mt-5 text-sm sm:text-base leading-relaxed text-white/70 font-light whitespace-pre-line">
                   {settings.about_description}
                 </p>
 
-                {/* Inline Estate Highlights */}
-                <div className="mt-8 grid grid-cols-3 gap-4 border-t border-white/10 pt-6">
+                {/* Minimalist 3-Pillar Row */}
+                <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4 border-t border-white/10 pt-8">
                   <div>
-                    <span className="font-serif text-2xl text-[#d4af37] font-semibold">100%</span>
-                    <p className="text-[11px] text-white/50 uppercase tracking-wider mt-1">Natural Feed</p>
+                    <Beef className="h-5 w-5 text-[#d4af37]" />
+                    <h3 className="mt-3 font-serif text-base text-white font-medium">Qurbani & Meat</h3>
+                    <p className="mt-1 text-xs text-white/60 leading-relaxed font-light">
+                      Handpicked males fed slowly with zero chemical shortcuts.
+                    </p>
                   </div>
-                  <div className="border-l border-white/10 pl-4">
-                    <span className="font-serif text-2xl text-[#d4af37] font-semibold">24/7</span>
-                    <p className="text-[11px] text-white/50 uppercase tracking-wider mt-1">Vet Protocol</p>
-                  </div>
-                  <div className="border-l border-white/10 pl-4">
-                    <span className="font-serif text-2xl text-[#d4af37] font-semibold">Rohi</span>
-                    <p className="text-[11px] text-white/50 uppercase tracking-wider mt-1">Preserved Line</p>
-                  </div>
-                </div>
-              </div>
 
-              {/* Right Column: Wide Landscape Frame (No awkward floating cards) */}
-              <div className="lg:col-span-7">
-                <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#16161c] shadow-2xl group transition-all duration-500 hover:border-[#c5a059]/40">
-                  <img
-                    src={aboutImg}
-                    alt="Iqbal Cattle Farm Estate"
-                    className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  {/* Subtle Vignette Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+                  <div className="sm:border-l sm:border-white/10 sm:pl-4">
+                    <Dna className="h-5 w-5 text-[#d4af37]" />
+                    <h3 className="mt-3 font-serif text-base text-white font-medium">Purebred Lines</h3>
+                    <p className="mt-1 text-xs text-white/60 leading-relaxed font-light">
+                      Resilient genetics selected for desert hardiness & high milk yield.
+                    </p>
+                  </div>
 
-                  {/* Integrated Bottom Bar */}
-                  <div className="absolute bottom-5 left-5 right-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-white/10 bg-[#09090b]/80 px-4 py-3 backdrop-blur-md">
-                    <div className="flex items-center gap-2.5">
-                      <MapPin className="h-4 w-4 text-[#d4af37] shrink-0" />
-                      <div>
-                        <p className="font-serif text-sm font-medium text-white">The Rohi Sanctuary</p>
-                        <p className="text-[11px] text-white/60">Track No. 5 · Chak 340 HR · Yazman</p>
-                      </div>
-                    </div>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#c5a059] bg-[#c5a059]/10 px-2.5 py-1 rounded-full border border-[#c5a059]/20">
-                      Bahawalpur
-                    </span>
+                  <div className="sm:border-l sm:border-white/10 sm:pl-4">
+                    <HeartHandshake className="h-5 w-5 text-[#d4af37]" />
+                    <h3 className="mt-3 font-serif text-base text-white font-medium">Ethical Care</h3>
+                    <p className="mt-1 text-xs text-white/60 leading-relaxed font-light">
+                      Continuous fresh water, open paddocks, and scheduled immunization.
+                    </p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            {/* 3 Value Pillars Full-Width Grid */}
-            <div className="mt-14 grid gap-6 sm:grid-cols-3">
-              <div className="rounded-2xl border border-white/10 bg-[#16161c] p-6 transition-all hover:border-[#c5a059]/40 hover:bg-[#1a1a22]">
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#c5a059]/10 border border-[#c5a059]/20">
-                  <Beef className="h-5 w-5 text-[#d4af37]" />
-                </div>
-                <h3 className="mt-4 font-serif text-lg text-white font-medium">Qurbani & Meat</h3>
-                <p className="mt-2 text-xs sm:text-sm text-white/60 leading-relaxed font-light">
-                  Handpicked males raised with balanced natural grain, green fodder, and zero artificial shortcuts.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-[#16161c] p-6 transition-all hover:border-[#c5a059]/40 hover:bg-[#1a1a22]">
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#c5a059]/10 border border-[#c5a059]/20">
-                  <Dna className="h-5 w-5 text-[#d4af37]" />
-                </div>
-                <h3 className="mt-4 font-serif text-lg text-white font-medium">Purebred Lines</h3>
-                <p className="mt-2 text-xs sm:text-sm text-white/60 leading-relaxed font-light">
-                  Direct Cholistani genetics selected for extreme weather resilience, disease resistance & high milk yield.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-[#16161c] p-6 transition-all hover:border-[#c5a059]/40 hover:bg-[#1a1a22]">
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#c5a059]/10 border border-[#c5a059]/20">
-                  <HeartHandshake className="h-5 w-5 text-[#d4af37]" />
-                </div>
-                <h3 className="mt-4 font-serif text-lg text-white font-medium">Ethical Rearing</h3>
-                <p className="mt-2 text-xs sm:text-sm text-white/60 leading-relaxed font-light">
-                  Continuous fresh water, open-air sunlit paddocks, and strict biosecurity with scheduled immunization.
-                </p>
               </div>
             </div>
           </div>
