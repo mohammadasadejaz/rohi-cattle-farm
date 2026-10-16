@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as RedesignRouteImport } from './routes/redesign'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminGateRouteRouteImport } from './routes/admin/_gate/route'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
@@ -31,11 +30,6 @@ import { Route as ApiPublicMediaSplatRouteImport } from './routes/api/public/med
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RedesignRoute = RedesignRouteImport.update({
-  id: '/redesign',
-  path: '/redesign',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
@@ -121,7 +115,6 @@ const ApiPublicMediaSplatRoute = ApiPublicMediaSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/redesign': typeof RedesignRoute
   '/admin': typeof AdminGateRouteRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
   '/animals/$animalId': typeof AnimalsAnimalIdRoute
@@ -141,7 +134,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/redesign': typeof RedesignRoute
   '/admin': typeof AdminIndexRoute
   '/admin/login': typeof AdminLoginRoute
   '/animals/$animalId': typeof AnimalsAnimalIdRoute
@@ -161,7 +153,6 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/redesign': typeof RedesignRoute
   '/admin/_gate': typeof AdminGateRouteRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
   '/animals/$animalId': typeof AnimalsAnimalIdRoute
@@ -183,7 +174,6 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/redesign'
     | '/admin'
     | '/admin/login'
     | '/animals/$animalId'
@@ -203,7 +193,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/redesign'
     | '/admin'
     | '/admin/login'
     | '/animals/$animalId'
@@ -222,7 +211,6 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/redesign'
     | '/admin/_gate'
     | '/admin/login'
     | '/animals/$animalId'
@@ -243,7 +231,6 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  RedesignRoute: typeof RedesignRoute
   AdminGateRouteRoute: typeof AdminGateRouteRouteWithChildren
   AdminLoginRoute: typeof AdminLoginRoute
   AnimalsAnimalIdRoute: typeof AnimalsAnimalIdRoute
@@ -259,13 +246,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/redesign': {
-      id: '/redesign'
-      path: '/redesign'
-      fullPath: '/redesign'
-      preLoaderRoute: typeof RedesignRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/': {
@@ -415,7 +395,6 @@ const AdminGateRouteRouteWithChildren = AdminGateRouteRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  RedesignRoute: RedesignRoute,
   AdminGateRouteRoute: AdminGateRouteRouteWithChildren,
   AdminLoginRoute: AdminLoginRoute,
   AnimalsAnimalIdRoute: AnimalsAnimalIdRoute,
