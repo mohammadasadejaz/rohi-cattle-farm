@@ -13,6 +13,13 @@ import {
   ShieldCheck,
   CheckCircle2,
   Sparkles,
+  MapPin,
+  Clock,
+  Compass,
+  ArrowUpRight,
+  Award,
+  Crown,
+  ChevronRight,
 } from "lucide-react";
 
 import { getPublicSiteData } from "@/lib/public-data-browser";
@@ -26,16 +33,12 @@ import {
   withSoldLast,
   type SiteSettings,
 } from "@/lib/site";
-import type { Animal, AnimalCard, Breed } from "@/lib/queries";
+import type { Animal, AnimalCard, Breed, Service, GalleryImage } from "@/lib/queries";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { AnimalPhoto } from "@/components/site/AnimalPhoto";
-import { SiteHeader } from "@/components/site/SiteHeader";
-import { Services } from "@/components/site/Services";
-import { Gallery } from "@/components/site/Gallery";
 import { BookingForm } from "@/components/site/BookingForm";
-import { ContactLocation } from "@/components/site/ContactLocation";
-import { SiteFooter } from "@/components/site/SiteFooter";
+import { Gallery } from "@/components/site/Gallery";
 
 import heroFallback from "@/assets/hero-cattle.jpg";
 import aboutFallback from "@/assets/cholistan.jpg";
@@ -48,11 +51,12 @@ import goatsImg from "@/assets/goats.jpg";
 export const Route = createFileRoute("/redesign")({
   head: () => ({
     meta: [
-      { title: "Redesign Preview | Iqbal Cattle Farm (Rohi)" },
+      { title: "Iqbal Cattle Farm (Rohi) | Ultra-Premium Livestock Estate" },
+      { name: "description", content: "Premier Cholistani cattle estate, ethical breeding, and elite livestock in Bahawalpur." },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
-  component: RedesignPage,
+  component: LuxuryRedesignPage,
 });
 
 const DEFAULT_CARD_IMAGES: Record<string, string> = {
@@ -61,7 +65,7 @@ const DEFAULT_CARD_IMAGES: Record<string, string> = {
   Goats: goatsImg,
 };
 
-function RedesignPage() {
+function LuxuryRedesignPage() {
   const { data, isLoading, error } = useQuery({
     queryKey: ["site-data"],
     queryFn: getPublicSiteData,
@@ -72,16 +76,21 @@ function RedesignPage() {
 
   if (isLoading) {
     return (
-      <div className="grid min-h-screen place-items-center text-muted-foreground">
-        Loading Redesign Preview...
+      <div className="grid min-h-screen place-items-center bg-[#0d100e] text-[#d4af37]">
+        <div className="flex flex-col items-center gap-4">
+          <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#d4af37] border-t-transparent" />
+          <p className="font-serif tracking-widest uppercase text-xs text-white/70">
+            Entering The Estate...
+          </p>
+        </div>
       </div>
     );
   }
 
   if (error || !data || !data.settings) {
     return (
-      <div className="grid min-h-screen place-items-center p-6 text-center text-muted-foreground">
-        Could not load site data.
+      <div className="grid min-h-screen place-items-center bg-[#0d100e] p-6 text-center text-white/70">
+        <p>Could not connect to the farm registry. Please refresh.</p>
       </div>
     );
   }
@@ -90,12 +99,15 @@ function RedesignPage() {
   const animals = (data.animals ?? []) as Animal[];
   const breeds = (data.breeds ?? []) as Breed[];
   const cards = (data.animalCards ?? []) as AnimalCard[];
+  const services = (data.services ?? []) as Service[];
+  const gallery = (data.gallery ?? []) as GalleryImage[];
 
-  // Filter listings
   const filteredAnimals =
     selectedCategory === "All"
       ? animals
-      : animals.filter((a) => a.category.toLowerCase().includes(selectedCategory.toLowerCase()));
+      : animals.filter((a) =>
+          (a.category || "").toLowerCase().includes(selectedCategory.toLowerCase()),
+        );
   const sortedListings = withSoldLast(filteredAnimals);
 
   const heroImg = mediaUrl(settings.hero_image_url) ?? heroFallback;
@@ -104,174 +116,228 @@ function RedesignPage() {
   const embryoImg = mediaUrl(settings.embryo_image_url) ?? embryoFallback;
 
   return (
-    <div className="min-h-screen bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground">
-      {/* PREVIEW BANNER */}
-      <div className="sticky top-0 z-50 flex items-center justify-between border-b border-primary/20 bg-primary/95 px-4 py-2 text-xs font-medium text-primary-foreground backdrop-blur-md">
+    <div className="min-h-screen bg-[#0b0e0c] text-[#f4efe6] selection:bg-[#c5a059] selection:text-black font-sans">
+      {/* =========================================
+          PROTOTYPE BANNER (Discrete Top Pill)
+         ========================================= */}
+      <div className="sticky top-0 z-50 flex items-center justify-between border-b border-[#c5a059]/30 bg-[#0b0e0c]/90 px-4 py-2 text-xs text-[#e8d5b5] backdrop-blur-xl">
         <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 shrink-0 text-amber-300" />
+          <Crown className="h-3.5 w-3.5 text-[#d4af37]" />
           <span>
-            <strong>Redesign Prototype:</strong> Experience the clean, streamlined interface.
+            <strong>Ultra-Premium Overhaul Prototype:</strong> Bespoke luxury cattle estate design.
           </span>
         </div>
-        <Link to="/" className="underline underline-offset-2 hover:opacity-80">
-          Back to Live Site ↗
+        <Link to="/" className="text-[#d4af37] underline underline-offset-2 hover:text-white">
+          Return to Old Homepage ↗
         </Link>
       </div>
 
-      <SiteHeader settings={settings} />
+      {/* =========================================
+          LUXURY FLOATING NAVBAR
+         ========================================= */}
+      <header className="sticky top-[33px] z-40 border-b border-white/10 bg-[#0d120f]/80 backdrop-blur-md">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+          {/* Logo / Brandmark */}
+          <a href="#home" className="flex items-center gap-3 group">
+            <div className="grid h-10 w-10 place-items-center rounded-full border border-[#c5a059]/60 bg-gradient-to-br from-[#c5a059]/20 to-black text-[#d4af37] shadow-inner transition-transform group-hover:scale-105">
+              <span className="font-serif text-sm font-bold tracking-wider">ICF</span>
+            </div>
+            <div>
+              <span className="block font-serif text-lg tracking-wide text-white group-hover:text-[#d4af37] transition-colors">
+                {settings.farm_name}
+              </span>
+              <span className="block text-[10px] uppercase tracking-[0.28em] text-[#c5a059]">
+                Rohi Desert · Est. {settings.established_year}
+              </span>
+            </div>
+          </a>
+
+          {/* Desktop Links */}
+          <nav className="hidden items-center gap-8 md:flex">
+            <a href="#about" className="text-xs uppercase tracking-[0.2em] text-white/70 hover:text-[#d4af37] transition-colors">
+              The Estate
+            </a>
+            <a href="#animals" className="text-xs uppercase tracking-[0.2em] text-white/70 hover:text-[#d4af37] transition-colors">
+              Collection
+            </a>
+            <a href="#agriculture" className="text-xs uppercase tracking-[0.2em] text-white/70 hover:text-[#d4af37] transition-colors">
+              Pastures
+            </a>
+            <a href="#embryo-transfer" className="text-xs uppercase tracking-[0.2em] text-white/70 hover:text-[#d4af37] transition-colors">
+              Genetics
+            </a>
+            <a href="#services" className="text-xs uppercase tracking-[0.2em] text-white/70 hover:text-[#d4af37] transition-colors">
+              Services
+            </a>
+            <a href="#booking" className="text-xs uppercase tracking-[0.2em] text-white/70 hover:text-[#d4af37] transition-colors">
+              Inquire
+            </a>
+          </nav>
+
+          {/* Direct Concierge WhatsApp Button */}
+          <div className="flex items-center gap-3">
+            <a
+              href={whatsappHref(settings.whatsapp, "Assalam-o-Alaikum, I would like to speak with the estate concierge regarding livestock availability.")}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-[#c5a059]/50 bg-[#16221b] px-4 py-2 text-xs font-medium text-[#e5c158] shadow-[0_0_15px_rgba(197,160,89,0.15)] transition-all hover:border-[#c5a059] hover:bg-[#1e3026] hover:text-white"
+            >
+              <MessageCircle className="h-3.5 w-3.5 text-emerald-400" />
+              <span>VIP WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </header>
 
       <main>
         {/* =========================================
-            1. HERO SECTION (Refined, Modern, Impactful)
+            HERO SECTION: High-End Heritage Estate
            ========================================= */}
-        <section id="home" className="relative isolate min-h-[92svh] overflow-hidden bg-earth">
+        <section id="home" className="relative min-h-[90svh] flex items-center justify-center overflow-hidden">
+          {/* Hero Image with Cinematic Vignette */}
           <img
             src={heroImg}
-            alt={`${settings.farm_name} livestock in Cholistan`}
-            width={1920}
-            height={1088}
-            className="absolute inset-0 h-full w-full object-cover"
+            alt={settings.farm_name}
+            className="absolute inset-0 h-full w-full object-cover object-center scale-105 transition-transform duration-1000"
           />
-          {/* Subtle multi-stop gradient for superior text contrast without dark mud */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30" />
-          <div className="absolute inset-0 bg-radial-[at_center_center] from-transparent via-black/20 to-black/70 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0b0e0c] via-[#0b0e0c]/70 to-[#0b0e0c]/40" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_#0b0e0c_85%)]" />
 
-          <div className="section-shell relative flex min-h-[92svh] flex-col justify-end pb-16 pt-32 md:pb-24">
-            <div className="max-w-3xl text-white">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1 text-xs font-medium tracking-wider uppercase text-amber-200 backdrop-blur-md">
-                <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
-                Est. {settings.established_year} · The Rohi, Bahawalpur
-              </div>
-
-              <h1 className="mt-6 font-display text-4xl leading-[0.96] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
-                {settings.hero_heading}
-              </h1>
-
-              <p className="mt-4 font-display text-xl italic text-white/90 sm:text-2xl md:text-3xl">
-                {settings.slogan}
-              </p>
-
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
-                {settings.hero_description}
-              </p>
-
-              {/* STREAMLINED CTAs: 2 strong actions */}
-              <div className="mt-8 flex flex-wrap items-center gap-4">
-                <Button asChild size="lg" className="h-12 px-7 text-base shadow-lg">
-                  <a href="#animals">
-                    {settings.hero_cta_primary || "Explore Livestock"} <ArrowRight className="ml-2 h-4 w-4" />
-                  </a>
-                </Button>
-
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="h-12 border-emerald-500/50 bg-emerald-950/40 text-emerald-100 hover:bg-emerald-900/60 hover:text-white backdrop-blur-sm"
-                >
-                  <a href={whatsappHref(settings.whatsapp)} target="_blank" rel="noreferrer">
-                    <MessageCircle className="mr-2 h-5 w-5 text-emerald-400" /> WhatsApp Inquiry
-                  </a>
-                </Button>
-
-                <a
-                  href={telHref(settings.phone)}
-                  className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors ml-1"
-                >
-                  <Phone className="h-4 w-4 text-primary" />
-                  <span>Call {settings.phone}</span>
-                </a>
-              </div>
+          <div className="relative z-10 mx-auto max-w-5xl px-6 py-20 text-center">
+            {/* Hallmark Pill */}
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-[#c5a059]/40 bg-[#0d120f]/80 px-4 py-1.5 backdrop-blur-md">
+              <Sparkles className="h-3.5 w-3.5 text-[#d4af37]" />
+              <span className="font-serif text-xs tracking-[0.25em] uppercase text-[#e5c158]">
+                The Imperial Livestock of Cholistan
+              </span>
             </div>
 
-            {/* SLEEK STATS & HERITAGE PILLARS */}
-            <div className="mt-14 grid grid-cols-1 gap-3 border-t border-white/15 pt-6 sm:grid-cols-3 sm:gap-6">
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-400" />
-                <div>
-                  <p className="font-display text-lg font-medium text-white">Rohi Cholistan Origin</p>
-                  <p className="text-xs text-white/70">Purebred Cholistani cattle & desert livestock</p>
-                </div>
+            {/* Hero Main Heading */}
+            <h1 className="mt-8 font-serif text-5xl font-normal leading-[1.05] tracking-tight text-white sm:text-7xl md:text-8xl">
+              Where Heritage <br />
+              <span className="italic text-[#e5c158]">Breeds Excellence.</span>
+            </h1>
+
+            {/* Slogan & Subtext */}
+            <p className="mx-auto mt-6 max-w-2xl text-base sm:text-xl text-white/80 font-light leading-relaxed">
+              {settings.slogan || "The Spirit of Cholistan, Delivered."}
+            </p>
+            <p className="mx-auto mt-2 max-w-xl text-xs sm:text-sm text-[#c5a059]/90 tracking-wide font-mono uppercase">
+              {settings.hero_description}
+            </p>
+
+            {/* High-Impact Actions */}
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+              <a
+                href="#animals"
+                className="inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-[#c5a059] to-[#dfc17b] px-8 py-3.5 text-xs uppercase tracking-[0.22em] font-semibold text-black shadow-[0_10px_25px_rgba(197,160,89,0.3)] transition-all hover:brightness-110 hover:scale-[1.02]"
+              >
+                <span>Explore The Collection</span>
+                <ArrowRight className="h-4 w-4" />
+              </a>
+
+              <a
+                href={whatsappHref(settings.whatsapp)}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-xs uppercase tracking-[0.2em] font-medium text-white backdrop-blur-md transition-all hover:border-[#c5a059] hover:bg-white/10"
+              >
+                <MessageCircle className="h-4 w-4 text-emerald-400" />
+                <span>Concierge Inquiry</span>
+              </a>
+            </div>
+
+            {/* 3 Metric Cards */}
+            <div className="mt-16 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-6 border-t border-white/10 pt-8 text-left">
+              <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4 backdrop-blur-sm">
+                <span className="text-[10px] uppercase tracking-[0.24em] text-[#c5a059] font-mono">Pedigree</span>
+                <p className="font-serif text-lg text-white mt-1">Cholistani Bloodlines</p>
+                <p className="text-xs text-white/60 mt-0.5">Directly preserved in Tehsil Yazman</p>
               </div>
 
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-400" />
-                <div>
-                  <p className="font-display text-lg font-medium text-white">Natural Farm Fodder</p>
-                  <p className="text-xs text-white/70">Fresh feed cut daily, zero artificial shortcuts</p>
-                </div>
+              <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4 backdrop-blur-sm">
+                <span className="text-[10px] uppercase tracking-[0.24em] text-[#c5a059] font-mono">Feed</span>
+                <p className="font-serif text-lg text-white mt-1">100% Farm-Grown</p>
+                <p className="text-xs text-white/60 mt-0.5">Organic green fodder cut fresh daily</p>
               </div>
 
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-400" />
-                <div>
-                  <p className="font-display text-lg font-medium text-white">Complete Animal Care</p>
-                  <p className="text-xs text-white/70">Open grounds, vaccinated & vetted year-round</p>
-                </div>
+              <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4 backdrop-blur-sm">
+                <span className="text-[10px] uppercase tracking-[0.24em] text-[#c5a059] font-mono">Standards</span>
+                <p className="font-serif text-lg text-white mt-1">Ethical Husbandry</p>
+                <p className="text-xs text-white/60 mt-0.5">Year-round veterinarian protocol</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* =========================================
-            2. ABOUT SECTION (Editorial Magazine Style)
+            CHAPTER 01: THE ESTATE & HERITAGE (EDITORIAL)
            ========================================= */}
-        <section id="about" className="scroll-mt-20 py-24 md:py-32 bg-card">
-          <div className="section-shell">
-            <div className="grid items-center gap-12 lg:grid-cols-12">
-              {/* Photo on left with subtle depth */}
+        <section id="about" className="relative py-28 md:py-36 bg-[#0f1411] border-y border-white/5">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="grid items-center gap-16 lg:grid-cols-12">
+              {/* Left Column: Framed Archival Photo */}
               <div className="relative lg:col-span-5">
-                <div className="overflow-hidden rounded-2xl border border-border shadow-[var(--shadow-lift)]">
+                <div className="relative overflow-hidden rounded-3xl border border-[#c5a059]/30 shadow-2xl">
                   <img
                     src={aboutImg}
-                    alt="Cholistan landscape around Iqbal Cattle Farm"
-                    loading="lazy"
-                    width={1400}
-                    height={900}
-                    className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-105"
+                    alt="Iqbal Cattle Farm Estate"
+                    className="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <p className="font-serif text-2xl text-white">The Rohi Sanctuary</p>
+                    <p className="text-xs tracking-[0.2em] uppercase text-[#c5a059] mt-1">
+                      Track No. 5 · Chak 340 HR · Bahawalpur
+                    </p>
+                  </div>
                 </div>
-                <div className="absolute -bottom-5 -right-3 rounded-xl border border-border/80 bg-earth px-6 py-4 text-white shadow-xl">
-                  <p className="font-display text-2xl leading-none">Rohi</p>
-                  <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-amber-200/90 mt-1">
-                    Cholistan Desert
-                  </p>
+
+                <div className="absolute -top-6 -right-6 hidden rounded-2xl border border-[#c5a059]/40 bg-[#0d120f] p-5 shadow-xl sm:block">
+                  <Award className="h-6 w-6 text-[#d4af37]" />
+                  <p className="mt-2 font-serif text-sm font-semibold text-white">Registered Herd</p>
+                  <p className="text-[10px] text-white/60 uppercase tracking-widest">Bahawalpur Division</p>
                 </div>
               </div>
 
-              {/* Story on right */}
-              <div className="lg:col-span-7 lg:pl-6">
-                <span className="eyebrow">Our Heritage & Story</span>
-                <h2 className="mt-3 font-display text-3xl sm:text-4xl md:text-5xl leading-[1.05]">
-                  {settings.about_title}
+              {/* Right Column: Editorial Text */}
+              <div className="lg:col-span-7">
+                <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.3em] text-[#c5a059]">
+                  <span className="h-px w-6 bg-[#c5a059]" />
+                  <span>01 / The Heritage</span>
+                </div>
+
+                <h2 className="mt-4 font-serif text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.08] text-white">
+                  {settings.about_title || "About Iqbal Cattle Farm"}
                 </h2>
-                <p className="mt-5 text-base sm:text-lg leading-relaxed text-muted-foreground whitespace-pre-line">
+
+                <p className="mt-6 text-base sm:text-lg leading-relaxed text-white/70 font-light whitespace-pre-line">
                   {settings.about_description}
                 </p>
 
                 {/* 3 Value Pillars */}
                 <div className="mt-10 grid gap-4 sm:grid-cols-3">
-                  <div className="rounded-xl border border-border/70 bg-background/60 p-5 transition-colors hover:border-primary/40">
-                    <Beef className="h-6 w-6 text-primary" />
-                    <h3 className="mt-3 font-display text-lg font-semibold">Qurbani & Meat</h3>
-                    <p className="mt-1.5 text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                      Male animals raised patiently on natural fodder, primed for Qurbani.
+                  <div className="rounded-2xl border border-white/10 bg-[#141b16] p-5 transition-all hover:border-[#c5a059]/50">
+                    <Beef className="h-5 w-5 text-[#d4af37]" />
+                    <h3 className="mt-3 font-serif text-lg text-white">Qurbani & Meat</h3>
+                    <p className="mt-1 text-xs text-white/60 leading-relaxed">
+                      Handpicked males fed slowly with zero chemical shortcuts.
                     </p>
                   </div>
 
-                  <div className="rounded-xl border border-border/70 bg-background/60 p-5 transition-colors hover:border-primary/40">
-                    <Dna className="h-6 w-6 text-primary" />
-                    <h3 className="mt-3 font-display text-lg font-semibold">Breeding Stock</h3>
-                    <p className="mt-1.5 text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                      Select females and genetics for healthy, resilient herds.
+                  <div className="rounded-2xl border border-white/10 bg-[#141b16] p-5 transition-all hover:border-[#c5a059]/50">
+                    <Dna className="h-5 w-5 text-[#d4af37]" />
+                    <h3 className="mt-3 font-serif text-lg text-white">Purebred Lines</h3>
+                    <p className="mt-1 text-xs text-white/60 leading-relaxed">
+                      Resilient genetics selected for desert hardiness & high milk yield.
                     </p>
                   </div>
 
-                  <div className="rounded-xl border border-border/70 bg-background/60 p-5 transition-colors hover:border-primary/40">
-                    <HeartHandshake className="h-6 w-6 text-primary" />
-                    <h3 className="mt-3 font-display text-lg font-semibold">Animal Care</h3>
-                    <p className="mt-1.5 text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                      Clean desert air, open paddocks, and scheduled vaccination.
+                  <div className="rounded-2xl border border-white/10 bg-[#141b16] p-5 transition-all hover:border-[#c5a059]/50">
+                    <HeartHandshake className="h-5 w-5 text-[#d4af37]" />
+                    <h3 className="mt-3 font-serif text-lg text-white">Ethical Care</h3>
+                    <p className="mt-1 text-xs text-white/60 leading-relaxed">
+                      Constant fresh water, open paddocks, and scheduled immunization.
                     </p>
                   </div>
                 </div>
@@ -281,28 +347,30 @@ function RedesignPage() {
         </section>
 
         {/* =========================================
-            3. LIVESTOCK SHOWCASE (Clean, Filterable, User-Friendly)
+            CHAPTER 02: THE LIVESTOCK COLLECTION (DARK LUXURY)
            ========================================= */}
-        <section id="animals" className="scroll-mt-20 py-24 md:py-32 bg-secondary/30">
-          <div className="section-shell">
-            {/* Header + Integrated Availability Badge */}
+        <section id="animals" className="relative py-28 md:py-36 bg-[#0a0d0b]">
+          <div className="mx-auto max-w-7xl px-6">
+            {/* Header + Integrated Protocol Pill */}
             <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-              <div className="max-w-2xl">
-                <span className="eyebrow">Selected from the Rohi</span>
-                <h2 className="mt-2 font-display text-3xl sm:text-5xl leading-[1.05]">
-                  {settings.animals_title || "Animals at the Farm"}
+              <div>
+                <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.3em] text-[#c5a059]">
+                  <span className="h-px w-6 bg-[#c5a059]" />
+                  <span>02 / The Collection</span>
+                </div>
+                <h2 className="mt-3 font-serif text-4xl sm:text-6xl text-white font-normal">
+                  {settings.animals_title || "Imperial Livestock Portfolio"}
                 </h2>
-                <p className="mt-3 text-base text-muted-foreground">
+                <p className="mt-3 max-w-2xl text-sm sm:text-base text-white/70 font-light">
                   {settings.animals_description ||
-                    "Cholistani cattle, sheep and goats raised on the farm."}
+                    "Cholistani cattle, sheep and goats raised on the farm. Contact us for current availability and acquisition."}
                 </p>
 
-                {/* INTEGRATED AVAILABILITY NOTICE (Replaces the awkward standalone box) */}
-                <div className="mt-5 inline-flex flex-wrap items-center gap-2 rounded-lg border border-primary/25 bg-primary/5 px-4 py-2.5 text-xs sm:text-sm text-foreground">
-                  <ShieldCheck className="h-4 w-4 shrink-0 text-primary" />
+                {/* Integrated Protocol Banner */}
+                <div className="mt-5 inline-flex items-center gap-3 rounded-xl border border-[#c5a059]/30 bg-[#141a16] px-4 py-2.5 text-xs text-[#e8d5b5]">
+                  <ShieldCheck className="h-4 w-4 text-[#d4af37] shrink-0" />
                   <span>
-                    <strong>Availability:</strong> Males prepared for Qurbani & Meat · Females for
-                    Breeding & Dairy.
+                    <strong>Acquisition Protocol:</strong> Males prepared for Qurbani & Meat · Females reserved for Breeding & Dairy.
                   </span>
                 </div>
               </div>
@@ -310,17 +378,17 @@ function RedesignPage() {
               {/* Category Filter Pills */}
               <div className="flex flex-wrap gap-2">
                 {["All", "Bulls / Cattle", "Sheep", "Goats"].map((cat) => {
-                  const label = cat === "Bulls / Cattle" ? "Bulls" : cat;
+                  const label = cat === "Bulls / Cattle" ? "Bulls & Cattle" : cat;
                   const active = selectedCategory === cat;
                   return (
                     <button
                       key={cat}
                       type="button"
                       onClick={() => setSelectedCategory(cat)}
-                      className={`rounded-full px-4 py-2 text-xs sm:text-sm font-medium transition-all cursor-pointer ${
+                      className={`rounded-full px-5 py-2.5 text-xs font-mono tracking-wider uppercase transition-all cursor-pointer ${
                         active
-                          ? "bg-primary text-primary-foreground shadow-md"
-                          : "border border-border bg-card text-muted-foreground hover:bg-secondary hover:text-foreground"
+                          ? "bg-[#c5a059] text-black font-bold shadow-[0_0_15px_rgba(197,160,89,0.4)]"
+                          : "border border-white/10 bg-[#131915] text-white/70 hover:border-[#c5a059]/50 hover:text-white"
                       }`}
                     >
                       {label}
@@ -330,8 +398,8 @@ function RedesignPage() {
               </div>
             </div>
 
-            {/* Animal Category Overview Cards */}
-            <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {/* Overview Cards (Bulls, Sheep, Goats) */}
+            <div className="mt-14 grid gap-8 md:grid-cols-3">
               {cards.map((card) => {
                 const categoryBreeds = breeds.filter((b) => b.category === card.category);
                 const image =
@@ -339,122 +407,139 @@ function RedesignPage() {
                 return (
                   <article
                     key={card.id}
-                    className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:shadow-xl hover:border-primary/40"
+                    className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#111713] transition-all duration-500 hover:border-[#c5a059]/70 hover:shadow-[0_15px_40px_rgba(0,0,0,0.6)]"
                   >
-                    <div className="relative h-64 overflow-hidden">
+                    <div className="relative h-72 overflow-hidden">
                       <img
                         src={image}
                         alt={card.title}
                         loading="lazy"
-                        width={1024}
-                        height={768}
                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <span className="text-xs uppercase tracking-wider text-amber-300 font-medium">
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#111713] via-black/20 to-transparent" />
+                      <div className="absolute top-4 left-4">
+                        <span className="rounded-full border border-black/40 bg-black/60 px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-[#d4af37] backdrop-blur-md">
                           {card.category}
                         </span>
-                        <h3 className="font-display text-2xl text-white mt-0.5">{card.title}</h3>
+                      </div>
+                      <div className="absolute bottom-4 left-6 right-6">
+                        <h3 className="font-serif text-2xl text-white">{card.title}</h3>
                       </div>
                     </div>
 
-                    <div className="p-6 flex flex-col justify-between flex-1">
+                    <div className="flex flex-1 flex-col justify-between p-6">
                       <div>
-                        <div className="flex flex-wrap gap-1.5 mb-3">
+                        <div className="flex flex-wrap gap-1.5 mb-4">
                           {categoryBreeds.map((breed) => (
-                            <Badge key={breed.id} variant="secondary" className="text-[11px]">
+                            <span
+                              key={breed.id}
+                              className="rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/80 font-mono"
+                            >
                               {breed.name}
-                            </Badge>
+                            </span>
                           ))}
                         </div>
                         {card.description && (
-                          <p className="text-sm text-muted-foreground leading-relaxed">
+                          <p className="text-xs sm:text-sm text-white/60 leading-relaxed font-light">
                             {card.description}
                           </p>
                         )}
                       </div>
 
-                      <Button asChild className="mt-6 w-full" variant="outline">
-                        <a
-                          href={whatsappHref(
-                            settings.whatsapp,
-                            `Assalam-o-Alaikum, I would like to inquire about ${card.title} at ${settings.farm_name}.`,
-                          )}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          <MessageCircle className="mr-2 h-4 w-4" /> {card.cta_label || "Inquire"}
-                        </a>
-                      </Button>
+                      <a
+                        href={whatsappHref(
+                          settings.whatsapp,
+                          `Assalam-o-Alaikum, I am inquiring about ${card.title} at ${settings.farm_name}.`,
+                        )}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-6 inline-flex items-center justify-center gap-2 rounded-xl border border-[#c5a059]/40 bg-[#162019] py-3 text-xs uppercase tracking-wider font-semibold text-[#e5c158] transition-all hover:bg-[#c5a059] hover:text-black"
+                      >
+                        <MessageCircle className="h-4 w-4" />
+                        <span>{card.cta_label || "Inquire on WhatsApp"}</span>
+                      </a>
                     </div>
                   </article>
                 );
               })}
             </div>
 
-            {/* Individual Animal Listings (if any) */}
+            {/* Individual Live Animal Listings */}
             {sortedListings.length > 0 && (
-              <div className="mt-16">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="font-display text-2xl font-medium">
-                    Available Listings ({sortedListings.length})
+              <div className="mt-20">
+                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                  <h3 className="font-serif text-2xl sm:text-3xl text-white">
+                    Available Live Stock ({sortedListings.length})
                   </h3>
-                  <Button asChild variant="ghost" size="sm">
-                    <Link to="/animals/">View All Catalog ↗</Link>
-                  </Button>
+                  <Link
+                    to="/animals"
+                    className="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest text-[#c5a059] hover:text-white"
+                  >
+                    <span>View All Catalog</span>
+                    <ArrowUpRight className="h-4 w-4" />
+                  </Link>
                 </div>
 
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                  {sortedListings.slice(0, 6).map((animal) => {
+                <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {sortedListings.map((animal) => {
                     const photo = mediaUrl(animal.photos?.[0]);
                     const sold = isSold(animal.availability);
                     return (
                       <article
                         key={animal.id}
-                        className="overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:shadow-md"
+                        className="group overflow-hidden rounded-2xl border border-white/10 bg-[#111713] transition-all hover:border-[#c5a059]/50 hover:shadow-xl"
                       >
                         <AnimalPhoto
                           src={photo}
                           alt={animal.title}
                           sold={sold}
                           loading="lazy"
-                          className="h-52 w-full"
-                          stampClassName="text-lg px-4"
+                          className="h-56 w-full"
+                          stampClassName="text-base px-4 font-serif"
                         />
                         <div className="p-5">
                           <div className="flex items-start justify-between gap-2">
-                            <h4 className="font-display text-xl font-semibold">{animal.title}</h4>
-                            <Badge variant={availabilityVariant(animal.availability)}>
+                            <h4 className="font-serif text-xl text-white group-hover:text-[#d4af37] transition-colors">
+                              {animal.title}
+                            </h4>
+                            <span
+                              className={`rounded-md px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider ${
+                                sold
+                                  ? "bg-red-950/60 text-red-300 border border-red-800/40"
+                                  : animal.availability === "Reserved"
+                                    ? "bg-amber-950/60 text-amber-300 border border-amber-800/40"
+                                    : "bg-emerald-950/60 text-emerald-300 border border-emerald-800/40"
+                              }`}
+                            >
                               {animal.availability}
-                            </Badge>
+                            </span>
                           </div>
 
-                          <p className="mt-2 text-xs text-muted-foreground">
+                          <p className="mt-2 text-xs text-white/50 font-mono">
                             {[animal.category, animal.breed, animal.gender, animal.purpose]
                               .filter(Boolean)
                               .join(" · ")}
                           </p>
 
                           {animal.price && (
-                            <p className="mt-3 font-display text-lg text-primary font-bold">
-                              PKR {animal.price.toLocaleString()}
+                            <p className="mt-3 font-serif text-2xl font-bold text-[#e5c158]">
+                              PKR {Number(animal.price).toLocaleString("en-PK")}
                             </p>
                           )}
 
                           {!sold && (
-                            <Button asChild size="sm" className="mt-4 w-full">
-                              <a
-                                href={whatsappHref(
-                                  settings.whatsapp,
-                                  `Assalam-o-Alaikum, I am inquiring about "${animal.title}" listed on your website.`,
-                                )}
-                                target="_blank"
-                                rel="noreferrer"
-                              >
-                                <MessageCircle className="mr-1.5 h-4 w-4" /> WhatsApp Inquire
-                              </a>
-                            </Button>
+                            <a
+                              href={whatsappHref(
+                                settings.whatsapp,
+                                `Assalam-o-Alaikum, I am inquiring about "${animal.title}" (PKR ${animal.price ? animal.price.toLocaleString() : 'N/A'}) listed on your website.`,
+                              )}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#16221b] border border-emerald-600/40 py-2.5 text-xs font-semibold text-emerald-200 transition-all hover:bg-emerald-600 hover:text-black"
+                            >
+                              <MessageCircle className="h-4 w-4" />
+                              <span>WhatsApp Concierge</span>
+                            </a>
                           )}
                         </div>
                       </article>
@@ -467,66 +552,69 @@ function RedesignPage() {
         </section>
 
         {/* =========================================
-            4. AGRICULTURE & FIELDS SECTION (Warm, Natural, Elevated)
+            CHAPTER 03: SUSTENANCE & PASTURES (AGRICULTURE)
            ========================================= */}
-        <section id="our-fields" className="scroll-mt-20 py-24 md:py-32 bg-card">
-          <div className="section-shell">
-            <div className="grid items-center gap-12 lg:grid-cols-12">
-              <div className="lg:col-span-6">
-                <span className="eyebrow">
-                  {settings.agriculture_eyebrow || "Grown on our own land"}
-                </span>
-                <h2 className="mt-3 font-display text-3xl sm:text-5xl leading-[1.05]">
+        <section id="agriculture" className="relative py-28 md:py-36 bg-[#0f1411] border-y border-white/5">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="grid items-center gap-16 lg:grid-cols-12">
+              <div className="lg:col-span-7">
+                <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.3em] text-[#c5a059]">
+                  <span className="h-px w-6 bg-[#c5a059]" />
+                  <span>03 / Natural Sustenance</span>
+                </div>
+
+                <h2 className="mt-4 font-serif text-3xl sm:text-5xl md:text-6xl font-normal text-white leading-[1.08]">
                   {settings.agriculture_title || "The animals eat what we grow"}
                 </h2>
-                <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+
+                <p className="mt-6 text-base sm:text-lg text-white/70 font-light leading-relaxed whitespace-pre-line">
                   {settings.agriculture_description ||
                     "Their feed comes from our own fields in the Cholistan, cut fresh and brought in through the year. Nothing artificial goes into them."}
                 </p>
 
-                <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                  <div className="rounded-xl border border-border/80 bg-secondary/20 p-4">
-                    <Wheat className="h-5 w-5 text-primary" />
-                    <h3 className="mt-2 font-display text-base font-semibold">
-                      {settings.agriculture_point1_title || "Our Own Fields"}
+                {/* 3 Hallmark Cards */}
+                <div className="mt-10 grid gap-4 sm:grid-cols-3">
+                  <div className="rounded-2xl border border-white/10 bg-[#141b16] p-5">
+                    <Wheat className="h-5 w-5 text-[#d4af37]" />
+                    <h3 className="mt-3 font-serif text-lg text-white">
+                      {settings.agriculture_point1_title || "Our Own Land"}
                     </h3>
-                    <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                    <p className="mt-1 text-xs text-white/60 leading-relaxed font-light">
                       {settings.agriculture_point1_text ||
-                        "Fodder cut fresh through the year on our land."}
+                        "Fodder is grown on our own land and harvested fresh."}
                     </p>
                   </div>
 
-                  <div className="rounded-xl border border-border/80 bg-secondary/20 p-4">
-                    <Sprout className="h-5 w-5 text-primary" />
-                    <h3 className="mt-2 font-display text-base font-semibold">
-                      {settings.agriculture_point2_title || "Nothing Artificial"}
+                  <div className="rounded-2xl border border-white/10 bg-[#141b16] p-5">
+                    <Sprout className="h-5 w-5 text-[#d4af37]" />
+                    <h3 className="mt-3 font-serif text-lg text-white">
+                      {settings.agriculture_point2_title || "Pure & Organic"}
                     </h3>
-                    <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
-                      {settings.agriculture_point2_text || "No chemical hormones or quick weight hacks."}
+                    <p className="mt-1 text-xs text-white/60 leading-relaxed font-light">
+                      {settings.agriculture_point2_text ||
+                        "Zero artificial feed or unnatural growth shortcuts."}
                     </p>
                   </div>
 
-                  <div className="rounded-xl border border-border/80 bg-secondary/20 p-4">
-                    <HeartHandshake className="h-5 w-5 text-primary" />
-                    <h3 className="mt-2 font-display text-base font-semibold">
-                      {settings.agriculture_point3_title || "Raised With Care"}
+                  <div className="rounded-2xl border border-white/10 bg-[#141b16] p-5">
+                    <HeartHandshake className="h-5 w-5 text-[#d4af37]" />
+                    <h3 className="mt-3 font-serif text-lg text-white">
+                      {settings.agriculture_point3_title || "Patience & Care"}
                     </h3>
-                    <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
-                      {settings.agriculture_point3_text || "Patient, day-to-day attention and clean water."}
+                    <p className="mt-1 text-xs text-white/60 leading-relaxed font-light">
+                      {settings.agriculture_point3_text ||
+                        "Raised slowly on clean water and open desert ground."}
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="lg:col-span-6">
-                <div className="overflow-hidden rounded-2xl border border-border shadow-[var(--shadow-lift)]">
+              <div className="lg:col-span-5">
+                <div className="overflow-hidden rounded-3xl border border-[#c5a059]/30 shadow-2xl">
                   <img
                     src={agriImg}
-                    alt="Animals grazing in Cholistan fields"
-                    loading="lazy"
-                    width={1400}
-                    height={900}
-                    className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-105"
+                    alt="Pastures and fodder fields"
+                    className="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105"
                   />
                 </div>
               </div>
@@ -535,76 +623,243 @@ function RedesignPage() {
         </section>
 
         {/* =========================================
-            5. EMBRYO TRANSFER SECTION (Modern Breeding & Genetics)
+            CHAPTER 04: BIOTECHNOLOGY & EMBRYO TRANSFER
            ========================================= */}
-        <section id="embryo-transfer" className="scroll-mt-20 py-24 md:py-32 bg-secondary/30">
-          <div className="section-shell">
-            <div className="grid items-center gap-12 lg:grid-cols-12">
-              <div className="order-2 lg:order-1 lg:col-span-6">
-                <div className="overflow-hidden rounded-2xl border border-border shadow-[var(--shadow-lift)]">
-                  <img
-                    src={embryoImg}
-                    alt="Cholistani cattle raised through the farm's breeding programme"
-                    loading="lazy"
-                    width={1400}
-                    height={900}
-                    className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-105"
-                  />
+        <section id="embryo-transfer" className="relative py-28 md:py-36 bg-[#0a0d0b]">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="relative overflow-hidden rounded-3xl border border-[#c5a059]/30 bg-gradient-to-br from-[#121c16] via-[#0d1310] to-[#0a0d0b] p-8 sm:p-14 lg:p-20 shadow-2xl">
+              <div className="grid items-center gap-12 lg:grid-cols-12">
+                <div className="lg:col-span-7">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-[#c5a059]/40 bg-[#c5a059]/10 px-3.5 py-1 text-xs font-mono uppercase tracking-widest text-[#d4af37]">
+                    <Dna className="h-3.5 w-3.5" />
+                    <span>{settings.embryo_eyebrow || "Advanced Reproductive Biotechnology"}</span>
+                  </div>
+
+                  <h2 className="mt-6 font-serif text-3xl sm:text-5xl md:text-6xl text-white font-normal leading-[1.08]">
+                    {settings.embryo_title || "Embryo Transfer for Superior Cholistani Lineages"}
+                  </h2>
+
+                  <p className="mt-6 text-base sm:text-lg text-white/70 font-light leading-relaxed whitespace-pre-line">
+                    {settings.embryo_description ||
+                      "Embryo transfer lets one outstanding cow produce far more calves than she could naturally. We collect embryos from proven Cholistani donors and place them in recipient cows, spreading superior genetics in a fraction of the time."}
+                  </p>
+
+                  <div className="mt-8 flex flex-wrap gap-4">
+                    <a
+                      href={whatsappHref(
+                        settings.whatsapp,
+                        settings.embryo_whatsapp_message ||
+                          "Assalam-o-Alaikum, I would like to consult with your breeding team regarding embryo transfer services.",
+                      )}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#c5a059] to-[#dfc17b] px-8 py-3.5 text-xs uppercase tracking-widest font-semibold text-black transition-all hover:scale-[1.02] hover:brightness-110 shadow-lg"
+                    >
+                      <MessageCircle className="h-4 w-4" />
+                      <span>{settings.embryo_cta_text || "Consult on Embryo Transfer"}</span>
+                    </a>
+                  </div>
+                </div>
+
+                <div className="lg:col-span-5">
+                  <div className="overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
+                    <img
+                      src={embryoImg}
+                      alt="Embryo transfer breeding programme"
+                      className="aspect-square w-full object-cover transition-transform duration-700 hover:scale-105"
+                    />
+                  </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
 
-              <div className="order-1 lg:order-2 lg:col-span-6">
-                <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary uppercase tracking-wider">
-                  <Dna className="h-3.5 w-3.5" />
-                  {settings.embryo_eyebrow || "Advanced Breeding"}
+        {/* =========================================
+            CHAPTER 05: ESTATE SERVICES
+           ========================================= */}
+        <section id="services" className="py-28 md:py-36 bg-[#0f1411] border-t border-white/5">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.3em] text-[#c5a059]">
+                <span className="h-px w-6 bg-[#c5a059]" />
+                <span>05 / Estate Concierge</span>
+              </div>
+              <h2 className="mt-3 font-serif text-3xl sm:text-5xl text-white font-normal">
+                Comprehensive Farm Services
+              </h2>
+              <p className="mt-3 text-white/60 font-light text-sm sm:text-base">
+                From advance Qurbani booking to specialized veterinary protocols and regional delivery.
+              </p>
+            </div>
+
+            <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {services.map((service) => {
+                const img = mediaUrl(service.image_url);
+                return (
+                  <article
+                    key={service.id}
+                    className="flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-[#131a15] p-6 transition-all hover:border-[#c5a059]/50 hover:shadow-xl"
+                  >
+                    <div>
+                      {img && (
+                        <img
+                          src={img}
+                          alt={service.title}
+                          className="mb-5 h-44 w-full rounded-xl object-cover"
+                        />
+                      )}
+                      <h3 className="font-serif text-2xl text-white">{service.title}</h3>
+                      <p className="mt-3 text-xs sm:text-sm text-white/60 leading-relaxed font-light">
+                        {service.description}
+                      </p>
+                    </div>
+
+                    {service.cta_label && (
+                      <a
+                        href={whatsappHref(
+                          settings.whatsapp,
+                          `Assalam-o-Alaikum, I would like to inquire about "${service.title}" at ${settings.farm_name}.`,
+                        )}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-6 inline-flex items-center gap-1.5 text-xs uppercase tracking-wider text-[#d4af37] hover:text-white"
+                      >
+                        <span>{service.cta_label}</span>
+                        <ChevronRight className="h-3.5 w-3.5" />
+                      </a>
+                    )}
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================
+            CHAPTER 06: VISUAL ARCHIVE / GALLERY
+           ========================================= */}
+        <section id="gallery" className="py-28 md:py-36 bg-[#0a0d0b]">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="max-w-2xl">
+              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.3em] text-[#c5a059]">
+                <span className="h-px w-6 bg-[#c5a059]" />
+                <span>06 / Visual Archive</span>
+              </div>
+              <h2 className="mt-3 font-serif text-3xl sm:text-5xl text-white font-normal">
+                Moments at the Farm
+              </h2>
+            </div>
+
+            <div className="mt-12">
+              <Gallery images={gallery} />
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================
+            CHAPTER 07: PRIVATE INQUIRY & LOCATION
+           ========================================= */}
+        <section id="booking" className="py-28 md:py-36 bg-[#0f1411] border-t border-white/5">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="grid gap-16 lg:grid-cols-12">
+              <div className="lg:col-span-5">
+                <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.3em] text-[#c5a059]">
+                  <span className="h-px w-6 bg-[#c5a059]" />
+                  <span>07 / Acquisition Request</span>
                 </div>
-
-                <h2 className="mt-4 font-display text-3xl sm:text-5xl leading-[1.05]">
-                  {settings.embryo_title || "Embryo transfer for stronger Cholistani herds"}
+                <h2 className="mt-3 font-serif text-3xl sm:text-5xl text-white font-normal">
+                  Reserve Your Livestock
                 </h2>
-
-                <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
-                  {settings.embryo_description ||
-                    "Embryo transfer lets one outstanding cow produce far more calves than she could naturally. We collect embryos from proven Cholistani donors and place them in recipient cows."}
+                <p className="mt-4 text-sm sm:text-base text-white/70 font-light leading-relaxed">
+                  Submit your custom livestock request. The farm management will personally verify availability and discuss direct inspection or reservation.
                 </p>
 
-                <Button asChild size="lg" className="mt-8">
-                  <a
-                    href={whatsappHref(
-                      settings.whatsapp,
-                      settings.embryo_whatsapp_message ||
-                        "Assalam-o-Alaikum, I would like to know more about your embryo transfer services.",
-                    )}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <MessageCircle className="mr-2 h-5 w-5" />
-                    {settings.embryo_cta_text || "Ask About Embryo Transfer"}
-                  </a>
-                </Button>
+                <div className="mt-8 space-y-4 rounded-2xl border border-white/10 bg-[#131a15] p-6 text-sm">
+                  <div className="flex items-start gap-3">
+                    <MapPin className="h-5 w-5 text-[#d4af37] shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold text-white">Farm Location</p>
+                      <p className="text-white/60 text-xs mt-0.5">{settings.address}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 pt-3 border-t border-white/10">
+                    <Phone className="h-5 w-5 text-[#d4af37] shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold text-white">Direct Line</p>
+                      <a href={telHref(settings.phone)} className="text-xs text-[#d4af37] hover:underline">
+                        {settings.phone} ({settings.contact_person})
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="lg:col-span-7">
+                <div className="rounded-3xl border border-white/10 bg-[#111713] p-8 shadow-2xl">
+                  <BookingForm settings={settings} breeds={breeds} />
+                </div>
               </div>
             </div>
           </div>
         </section>
-
-        {/* =========================================
-            6. SERVICES
-           ========================================= */}
-        <Services settings={settings} services={data.services} />
-
-        {/* =========================================
-            7. GALLERY
-           ========================================= */}
-        <Gallery images={data.gallery} />
-
-        {/* =========================================
-            8. BOOKING FORM & CONTACT
-           ========================================= */}
-        <BookingForm settings={settings} breeds={data.breeds} />
-        <ContactLocation settings={settings} />
       </main>
 
-      <SiteFooter settings={settings} />
+      {/* =========================================
+          LUXURY ESTATE FOOTER
+         ========================================= */}
+      <footer className="border-t border-white/10 bg-[#070908] py-16 text-white/70">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+              <p className="font-serif text-2xl text-white">{settings.farm_name}</p>
+              <p className="mt-1 text-xs uppercase tracking-widest text-[#c5a059]">
+                Est. {settings.established_year} · Cholistan, Pakistan
+              </p>
+              <p className="mt-4 text-xs text-white/50 leading-relaxed">
+                {settings.slogan}
+              </p>
+            </div>
+
+            <div>
+              <p className="text-xs uppercase tracking-widest text-white font-mono mb-3">Sections</p>
+              <ul className="space-y-2 text-xs">
+                <li><a href="#about" className="hover:text-[#d4af37]">The Estate Heritage</a></li>
+                <li><a href="#animals" className="hover:text-[#d4af37]">Imperial Collection</a></li>
+                <li><a href="#agriculture" className="hover:text-[#d4af37]">Pastures & Fodder</a></li>
+                <li><a href="#embryo-transfer" className="hover:text-[#d4af37]">Embryo Genetics</a></li>
+                <li><a href="#services" className="hover:text-[#d4af37]">Services & Delivery</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <p className="text-xs uppercase tracking-widest text-white font-mono mb-3">Concierge</p>
+              <ul className="space-y-2 text-xs">
+                <li><span>{settings.contact_person}</span></li>
+                <li><a href={telHref(settings.phone)} className="hover:text-[#d4af37]">{settings.phone}</a></li>
+                {settings.email && <li><a href={`mailto:${settings.email}`} className="hover:text-[#d4af37]">{settings.email}</a></li>}
+              </ul>
+            </div>
+
+            <div>
+              <p className="text-xs uppercase tracking-widest text-white font-mono mb-3">Sanctuary Location</p>
+              <p className="text-xs text-white/50 leading-relaxed">
+                {settings.address}
+              </p>
+              <div className="mt-4">
+                <Link to="/admin" className="text-[11px] text-[#c5a059] hover:underline">
+                  Estate Admin Portal ↗
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-12 border-t border-white/5 pt-6 text-center text-xs text-white/40">
+            © {new Date().getFullYear()} {settings.farm_name}. All rights reserved. Registered Livestock Estate.
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
