@@ -35,7 +35,7 @@ import type { Animal, AnimalCard, Breed, Service, GalleryImage } from "@/lib/que
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { AnimalPhoto } from "@/components/site/AnimalPhoto";
-import { BookingForm } from "@/components/site/BookingForm";
+import { LuxuryBookingSection } from "@/components/site/LuxuryBookingSection";
 import { LuxuryGallery } from "@/components/site/LuxuryGallery";
 
 import heroFallback from "@/assets/hero-cattle.jpg";
@@ -727,50 +727,7 @@ function LuxuryRedesignPage() {
         {/* =========================================
             CHAPTER 07: PRIVATE INQUIRY & LOCATION
            ========================================= */}
-        <section id="booking" className="py-28 md:py-36 bg-[#111116] border-t border-white/5">
-          <div className="mx-auto max-w-7xl px-6">
-            <div className="grid gap-16 lg:grid-cols-12">
-              <div className="lg:col-span-5">
-                <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.3em] text-[#c5a059]">
-                  <span className="h-px w-6 bg-[#c5a059]" />
-                  <span>07 / Acquisition Request</span>
-                </div>
-                <h2 className="mt-3 font-serif text-3xl sm:text-5xl text-white font-normal">
-                  Reserve Your Livestock
-                </h2>
-                <p className="mt-4 text-sm sm:text-base text-white/70 font-light leading-relaxed">
-                  Submit your custom livestock request. The farm management will personally verify availability and discuss direct inspection or reservation.
-                </p>
-
-                <div className="mt-8 space-y-4 rounded-2xl border border-white/10 bg-[#17171e] p-6 text-sm">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="h-5 w-5 text-[#d4af37] shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-semibold text-white">Farm Location</p>
-                      <p className="text-white/60 text-xs mt-0.5">{settings.address}</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3 pt-3 border-t border-white/10">
-                    <Phone className="h-5 w-5 text-[#d4af37] shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-semibold text-white">Direct Line</p>
-                      <a href={telHref(settings.phone)} className="text-xs text-[#d4af37] hover:underline">
-                        {settings.phone} ({settings.contact_person})
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="lg:col-span-7">
-                <div className="rounded-3xl border border-white/10 bg-[#16161c] p-8 shadow-2xl">
-                  <BookingForm settings={settings} breeds={breeds} />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <LuxuryBookingSection settings={settings} breeds={breeds} />
       </main>
 
       {/* =========================================
