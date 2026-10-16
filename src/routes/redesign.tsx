@@ -172,16 +172,16 @@ function LuxuryRedesignPage() {
             </a>
           </nav>
 
-          {/* Direct Concierge WhatsApp Button (Gold / Obsidian) */}
+          {/* Direct WhatsApp Button (Gold / Obsidian) */}
           <div className="flex items-center gap-3">
             <a
-              href={whatsappHref(settings.whatsapp, "Assalam-o-Alaikum, I would like to speak with the estate concierge regarding livestock availability.")}
+              href={whatsappHref(settings.whatsapp, "Assalam-o-Alaikum, I would like to inquire regarding livestock and services at Iqbal Cattle Farm.")}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-[#c5a059]/50 bg-[#1a1712] px-4 py-2 text-xs font-medium text-[#e5c158] shadow-[0_0_15px_rgba(197,160,89,0.15)] transition-all hover:border-[#c5a059] hover:bg-[#c5a059] hover:text-black"
             >
               <MessageCircle className="h-3.5 w-3.5 text-[#d4af37]" />
-              <span>VIP WhatsApp</span>
+              <span>WhatsApp</span>
             </a>
           </div>
         </div>
@@ -241,7 +241,7 @@ function LuxuryRedesignPage() {
                 className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-xs uppercase tracking-[0.2em] font-medium text-white backdrop-blur-md transition-all hover:border-[#c5a059] hover:bg-white/10"
               >
                 <MessageCircle className="h-4 w-4 text-[#d4af37]" />
-                <span>Concierge Inquiry</span>
+                <span>WhatsApp Inquiry</span>
               </a>
             </div>
 
@@ -536,7 +536,7 @@ function LuxuryRedesignPage() {
                               className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#c5a059] to-[#dfc17b] py-2.5 text-xs font-semibold text-black transition-all hover:brightness-110 shadow-md"
                             >
                               <MessageCircle className="h-4 w-4" />
-                              <span>WhatsApp Concierge</span>
+                              <span>Inquire on WhatsApp</span>
                             </a>
                           )}
                         </div>
@@ -681,7 +681,7 @@ function LuxuryRedesignPage() {
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.3em] text-[#c5a059]">
                 <span className="h-px w-6 bg-[#c5a059]" />
-                <span>05 / Estate Concierge</span>
+                <span>05 / Farm Services</span>
               </div>
               <h2 className="mt-3 font-serif text-3xl sm:text-5xl text-white font-normal">
                 Comprehensive Farm Services
@@ -832,7 +832,7 @@ function LuxuryRedesignPage() {
             </div>
 
             <div>
-              <p className="text-xs uppercase tracking-widest text-white font-mono mb-3">Concierge</p>
+              <p className="text-xs uppercase tracking-widest text-white font-mono mb-3">Direct Contact</p>
               <ul className="space-y-2 text-xs">
                 <li><span>{settings.contact_person}</span></li>
                 <li><a href={telHref(settings.phone)} className="hover:text-[#d4af37]">{settings.phone}</a></li>
